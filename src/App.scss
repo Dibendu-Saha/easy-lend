@@ -1,0 +1,40 @@
+$natwest-theme: #5a287d;
+$natwest-tint: #b695ce;
+$font-color: #4a4a4a;
+
+:root {
+  // color-scheme: light dark;
+  // color: rgba(255, 255, 255, 0.87);
+  // background-color: #242424;
+
+  background: $natwest-tint;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  color: $font-color;
+  /* max-width: 1600px; */
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}

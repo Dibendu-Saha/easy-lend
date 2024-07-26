@@ -1,0 +1,26 @@
+.eligibility-form-wrapper {
+    padding: 36px;
+    border-radius: 5px;
+    background: #f5f5f5;
+
+    .eligibility-form {
+        width: 400px;
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        input {
+            width: 250px;
+            height: 30px;
+            padding: 6px;
+            border: 1px solid #b3b3b3;
+        }
+
+        .form-break {
+            margin-bottom: 10px;
+        }
+    }
+}

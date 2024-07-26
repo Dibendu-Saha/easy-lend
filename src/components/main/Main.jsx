@@ -1,7 +1,8 @@
 import React from "react";
 import { Form } from "react-bootstrap";
-import EligibilityForm from "../eligibility-form/EligibilityForm";
 import Header from "../header/Header";
+import EligibilityForm from "../eligibility-form/EligibilityForm";
+import LoanApplyForm from "../loan-apply-form/LoanApplyForm";
 import "./Main.scss";
 
 const Main = () => {
@@ -23,6 +24,7 @@ const Main = () => {
 
             <Header />
             <EligibilityForm />
+            {/* <LoanApplyForm /> */}
         </div>
     )
 }

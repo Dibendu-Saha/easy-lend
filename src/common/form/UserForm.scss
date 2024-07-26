@@ -1,34 +1,56 @@
 $natwest-theme: #5a287d;
 
-.form-group {
-    // border: 1px solid;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-input {
-    width: 250px;
-    height: 30px;
-    font-family: inherit;
-    font-weight: inherit;
-    font-size: 1.4rem;
-}
-
-.form-break {
-    margin-bottom: 10px;
-}
-
-.btn-eligibility {
-    font-family: inherit;
-    padding: 12px;
-    color: #fff;
-    background: $natwest-theme;
-    border: none;
+.user-form-wrapper {
+    padding: 36px;
     border-radius: 5px;
-}
-.btn-eligibility:hover {
-    cursor: pointer;
-    outline: 1px solid $natwest-theme;
-    // scale: 1.03;
+    background: #f5f5f5;
+
+    .user-form {
+        width: 400px;
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .form-break {
+            margin-bottom: 10px;
+        }
+    }
+
+    .form-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    input {
+        width: 250px;
+        height: 30px;
+        padding: 6px;
+        font-family: inherit;
+        font-weight: inherit;
+        font-size: 1.4rem;
+        border: 1px solid #b3b3b3;
+    }
+
+    .form-break {
+        margin-bottom: 10px;
+    }
+
+    .btn-eligibility {
+        font-family: inherit;
+        padding: 8px 12px;
+        color: #fff;
+        background: $natwest-theme;
+        border: none;
+        border-radius: 5px;
+    }
+
+    .btn-eligibility:hover {
+        cursor: pointer;
+        outline: 1px solid $natwest-theme;
+        // scale: 1.03;
+    }
 }

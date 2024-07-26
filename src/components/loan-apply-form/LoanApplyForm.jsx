@@ -13,12 +13,10 @@ const LoanApplyForm = () => {
     ];
 
     return (
-        <div>
             <UserForm
                 formElements={formObj}
                 confirmButton="Apply"          
             />
-        </div>
     )
 }
 

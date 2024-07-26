@@ -9,32 +9,21 @@ const UserForm = ({
     className
 }) => {
     return (
-        <div className="user-form-wrapper">
-            <form action="" className={`${className ?? null} user-form`}>
-                {formElements.map(x => (
-                    <>
-                        <div className="form-group">
-                            {x.type !== "select" && (
-                                <>
-                                    <label htmlFor={x.name}>{x.prop}</label>
-                                    <input type={x.type} name={x.name} />
-                                </>
-                            )}
-                        </div>
-
-                        <div className="form-break"></div>
-                    </>
-                ))}
-
-                <div className="form-group">
-                    <div></div>
-                    <button type="submit" className="btn-eligibility">{confirmButton}</button>
+        <>
+            {formElements.map(x => (
+                <div class="col-md-6 mb-2">
+                    <div class="form-group mt-3">
+                        <input type="text" class="form-control form-control-lg form-control-a" style={{ padding: '1.5rem 1rem' }}
+                            placeholder={x.prop} />
+                    </div>
                 </div>
-            </form>
-        </div>
+            ))}
+            <div className="form-group" style={{marginTop: 50}}>
+                <button type="submit" class="btn btn-b customButton" style={{fontSize:'medium'}}>{confirmButton}</button>
+            </div>
+        </>
     )
 }
-
 export default UserForm;
 
 UserForm.defaultProps = {

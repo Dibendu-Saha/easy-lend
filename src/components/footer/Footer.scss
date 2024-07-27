@@ -1,0 +1,17 @@
+@import "../../App.scss";
+
+$header-color: #e7e7e7;
+
+.footer {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    bottom: 0;
+    justify-content: center;
+
+    h1 {
+        font-weight: 200;
+        font-size: 4rem;
+        color: $header-color;
+    }
+}

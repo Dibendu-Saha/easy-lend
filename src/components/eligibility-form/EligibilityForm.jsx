@@ -1,35 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import UserForm from "../../common/form/UserForm";
 
-const EligibilityForm = () => {
+const EligibilityForm = ({ currentStep }) => {
+
+    // const [values, setValues] = useState([]);
+
     const formObj = [
-        { prop: "Full Name", type: "text", name: "full-name" },
-        { prop: "PAN", type: "text", name: "pan" },
-        { prop: "Aadhar Number", type: "text", name: "aadhar" },
-        { prop: "Mobile Number", type: "tel", name: "mobile" },
-        { prop: "Email", type: "email", name: "email" },
-        { prop: "Amount", type: "number", name: "amount" },
-        { prop: "Tenure (months)", type: "number", name: "tenure" },
-        { prop: "Annual Income", type: "select", name: "annual-income" },
+        { prop: "Full Name", type: "text", name: "full-name", value: 'fullName', required: true, autoCapitalize: false },
+        { prop: "PAN", type: "text", name: "pan", value: 'pan', required: true, autoCapitalize: true },
+        { prop: "Aadhar Number", type: "number", name: "aadhar", value: 'aadhar', required: true, autoCapitalize: false },
+        { prop: "Mobile Number", type: "tel", name: "mobile", value: 'mobile', required: true, autoCapitalize: false },
+        { prop: "Email", type: "email", name: "email", value: 'email', required: true, autoCapitalize: false },
+        { prop: "Loan Amount", type: "number", name: "amount", value: 'amount', required: true, autoCapitalize: false },
+        { prop: "Tenure (months)", type: "number", name: "tenure", value: 'tenure', required: true, autoCapitalize: false },
+        { prop: "Annual Income", type: "number", name: "annual-income", value: 'annualIncome', required: true, autoCapitalize: false },
     ];
 
+    var values = [];
+
+    const checkEligibility = () => {
+        //here we can find values
+        currentStep();
+    }
+
+    const handleTextChange = (key, event) => {
+        values[key] = event.nativeEvent.target.value;
+    }
+
     return (
-        <div>
-            <div >
-                <div class="title-box-d">
-                    <h3 class="title-d">Check your Eligibility</h3>
+        <div className="form">
+            <form className="form-a">
+                <div className="row">
+                    <UserForm
+                        formElements={formObj}
+                        confirmButton="Check Eligibility"
+                        action={checkEligibility}
+                        handleTextChange={(key, event) => handleTextChange(key, event)}
+                    />
                 </div>
-                <div class="form">
-                    <form class="form-a">
-                        <div class="row">
-                            <UserForm
-                                formElements={formObj}
-                                confirmButton="Check Eligibility"
-                            />
-                        </div>
-                    </form>
-                </div>
-            </div>
+            </form>
         </div>
     )
 }

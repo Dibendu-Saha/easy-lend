@@ -1,29 +1,28 @@
-import React from "react";
-import { Form } from "react-bootstrap";
+import React, { useState } from "react";
 import Header from "../header/Header";
+import Footer from "../footer/Footer";
 import EligibilityForm from "../eligibility-form/EligibilityForm";
 import LoanApplyForm from "../loan-apply-form/LoanApplyForm";
 import "./Main.scss";
+import StepIndicator from "../../common/progressSteps/StepIndicator";
+
+
 
 const Main = () => {
 
-    return (
-        <div className="main">
-            <>
-                {/* <Form>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="name@example.com" />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Example textarea</Form.Label>
-                    <Form.Control as="textarea" rows={3} />
-                </Form.Group>
-            </Form> */}
-            </>
+    const [currentStep, setCurrentStep] = useState(0);
 
+    const setProgress = () => {
+        let _step = currentStep + 1;
+        setCurrentStep(_step);
+    }
+
+    return (
+        <div>
             <Header />
-            <EligibilityForm />
+            <StepIndicator currentStep={currentStep} />
+            <EligibilityForm currentStep={setProgress} />
+            {/* <Footer /> */}
             {/* <LoanApplyForm /> */}
         </div>
     )

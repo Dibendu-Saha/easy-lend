@@ -2,6 +2,9 @@ $natwest-theme: #5a287d;
 $natwest-tint: #b695ce;
 $font-color: #4a4a4a;
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+@import "rsuite/dist/rsuite.css";
+
 :root {
   // color-scheme: light dark;
   // color: rgba(255, 255, 255, 0.87);
@@ -592,8 +595,8 @@ a:hover {
 }
 
 .btn.btn-b.customButton {
-float:inline-end;
-border-radius: 5px;
+  float: inline-end;
+  border-radius: 5px;
 }
 
 .btn.btn-a {
@@ -613,6 +616,11 @@ border-radius: 5px;
 }
 
 .btn.btn-b:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.btn.btn-b:focus {
   background-color: #000000;
   color: #ffffff;
 }
@@ -2194,4 +2202,39 @@ footer .copyright-footer {
 
 footer .credits {
   font-size: 14px;
+}
+
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
+
+.container {
+  height: 5vh;
+}
+
+.progresses {
+  display: flex;
+  align-items: center;
+}
+
+.line {
+  width: 120px;
+  height: 6px;
+  background: #2eca6a;
+}
+
+
+.steps {
+  display: flex;
+  background-color: #2eca6a;
+  color: #fff;
+  font-size: 14px;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.rs-steps-item-content {
+  margin-left: -25%
 }

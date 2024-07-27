@@ -4,11 +4,11 @@ import "./Header.scss";
 const Header = () => {
 
     return (
-        <div className="header">
-            <h1>
-                <strong>NatWest</strong> Easy Lend
-            </h1>
-        </div>
+        <nav className="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
+            <div className="container">
+                <a className="navbar-brand text-brand" style={{ fontSize: '3.2rem' }} href="index.html">Urban<span className="color-b">Housing</span></a>
+            </div>
+        </nav>
     )
 }
 

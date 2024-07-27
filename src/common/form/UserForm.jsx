@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
-
 import "./UserForm.scss";
 
 const UserForm = ({
@@ -11,7 +10,7 @@ const UserForm = ({
     cancelButton,
     className
 }) => {
-    let INITIAL_STATE = {
+    const INITIAL_STATE = {
         name: "",
         email: "",
         mobile: "",
@@ -22,7 +21,7 @@ const UserForm = ({
         tenure: ""
     };
 
-    const [formValues, setFormValues] = useState(INITIAL_STATE);    
+    const [formValues, setFormValues] = useState(INITIAL_STATE);
 
     return (
         <div className="row">
@@ -46,7 +45,7 @@ const UserForm = ({
             {formElements.map(x => (
                 <Form.Group className="col-md-6 mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Control
-                        type="text"
+                        type={x.type}
                         size="lg"
                         name={x.name}
                         placeholder={x.prop}

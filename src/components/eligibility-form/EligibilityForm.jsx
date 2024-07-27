@@ -17,8 +17,8 @@ const EligibilityForm = () => {
     return (
         <div>
             <div >
-                <div className="eligibility-title border-red2">
-                    <h3>Check your Eligibility</h3>
+                <div className="eligibility-title">
+                    <h2>Check your Eligibility</h2>
                 </div>
                 <div className="form">
                     <form className="form-a">

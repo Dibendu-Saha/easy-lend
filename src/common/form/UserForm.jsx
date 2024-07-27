@@ -13,14 +13,16 @@ const UserForm = ({
 }) => {
     return (
         <div className="row">
-            {/* {formElements.map(x => (
-                <div className="col-md-6 mb-2">
-                    <div className="form-group mt-3">
-                        <input type="text" className="form-control form-control-lg form-control-a" style={{ padding: '1.5rem 1rem' }}
-                            placeholder={x.prop} />
+            <>
+                {/* {formElements.map(x => (
+                    <div className="col-md-6 mb-2">
+                        <div className="form-group mt-3">
+                            <input type="text" className="form-control form-control-lg form-control-a" style={{ padding: '1.5rem 1rem' }}
+                                placeholder={x.prop} />
+                        </div>
                     </div>
-                </div>
-            ))} */}
+                ))} */}
+            </>
 
             {formTitle.length > 0 && (
                 <div className="form-title">
@@ -30,11 +32,26 @@ const UserForm = ({
 
             {formElements.map(x => (
                 <Form.Group className="col-md-6 mb-3" controlId="exampleForm.ControlTextarea1">
-                    <Form.Control type="text" size="lg" placeholder={x.prop} className="form-input" />
+                    <Form.Control
+                        type="text"
+                        size="lg"
+                        name={x.name}
+                        placeholder={x.prop}
+                        className="form-input"
+                        onBlur={e => {
+                            console.log(e.target.value)
+                        }}
+                    />
                 </Form.Group>
             ))}
             <div className="form-group button-group" style={{ marginTop: 50 }}>
-                <Button variant="success" className="button">{confirmButton}</Button>
+                <Button
+                    variant="success"
+                    className="button"
+                    onClick={() => alert('submit')}
+                >
+                    {confirmButton}
+                </Button>
             </div>
         </div>
     )

@@ -14,6 +14,7 @@ const LoanApplyForm = () => {
 
     return (
             <UserForm
+                formTitle="Apply for Loan"
                 formElements={formObj}
                 confirmButton="Apply"          
             />

@@ -2,7 +2,6 @@ $natwest-theme: #5a287d;
 $natwest-tint: #b695ce;
 $font-color: #4a4a4a;
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 @import "rsuite/dist/rsuite.css";
 
 #root {
@@ -365,7 +364,7 @@ a:hover {
 .navbar-default {
   transition: all 0.5s ease-in-out;
   background-color: #ffffff;
-  padding-top: 20px;
+  // padding-top: 20px;
   padding-bottom: 20px;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;

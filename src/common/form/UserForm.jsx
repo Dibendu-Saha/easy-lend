@@ -39,8 +39,7 @@ const UserForm = ({
                         name={x.name}
                         placeholder={x.prop}
                         className="form-control"
-                        onBlur={e => setFormValues({ ...formValues, [e.target.name]: e.target.value })}
-                        onChange={(event) => handleTextChange(x.value, event)}
+                        onBlur={(event) => handleTextChange(x.value, event)}
                         style={{ padding: '1.5rem 1rem', textTransform: x.autoCapitalize ? 'uppercase' : 'none' }}
                         autoComplete="true"
                         required
@@ -48,10 +47,16 @@ const UserForm = ({
                 </Form.Group>
             ))}
 
-            <div className="col-8" style={{ width: '54%' }}>
+            {/* <div className="col-8" style={{ width: '54%' }}>
                 <div className="form-group" style={{ marginTop: 20 }}>
                     <input type="checkbox" name="consentCheckbox" /> I am providing consent to use my information to contact me for further updates.
                 </div>
+            </div> */}
+            <div className="form-group col-10" style={{ width: '60%', textAlign: 'justify' }}>
+                <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" />
+                <label className="form-check-label" htmlFor="defaultCheck1" style={{ marginLeft: 10 }}>
+                    I am providing consent to use my information to contact me for further updates.
+                </label>
             </div>
             <div className="form-group button-group" style={{ marginTop: 50 }}>
                 <Button

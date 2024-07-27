@@ -20,7 +20,7 @@ const UserForm = ({
         income: "",
         amount: "",
         tenure: ""
-    }
+    };
 
     const [formValues, setFormValues] = useState(INITIAL_STATE);    
 

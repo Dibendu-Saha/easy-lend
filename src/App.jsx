@@ -1,13 +1,9 @@
-
-// import 'bootstrap/dist/css/bootstrap.min.css';
-import Main from './components/main/Main';
+import Home from './components/home/Home';
 import './App.scss';
 
 function App() {
   return (
-    <>
-      <Main />
-    </>
+    <Home />
   )
 }
 

@@ -15,23 +15,11 @@ const EligibilityForm = () => {
     ];
 
     return (
-        <div>
-            <div >
-                <div className="eligibility-title">
-                    <h2>Check your Eligibility</h2>
-                </div>
-                <div className="form">
-                    <form className="form-a">
-                        <div className="row">
-                            <UserForm
-                                formElements={formObj}
-                                confirmButton="Check Eligibility"
-                            />
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <UserForm
+            formTitle="Check your Eligibility"
+            formElements={formObj}
+            confirmButton="Check Eligibility"
+        />
     )
 }
 

@@ -55,6 +55,14 @@
 //     }
 // }
 
+.form-title {
+    margin-bottom: 32px;
+
+    h2 {
+        font-weight: 400;
+    }
+}
+
 .form-input {
     height: 40px;
     font-family: inherit;
@@ -62,14 +70,14 @@
     font-size: 1.4rem;
 }
 
-.button {
-    font-size: inherit;
-    font-weight: inherit;
-    padding: 1rem 3rem;
-    color: #fff;
-}
-
 .button-group {
     display: flex;
     justify-content: flex-end;
+
+    .button {
+        font-size: inherit;
+        font-weight: inherit;
+        padding: 1rem 3rem;
+        color: #fff;
+    }
 }

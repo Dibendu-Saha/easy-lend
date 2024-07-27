@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
 
@@ -11,6 +11,19 @@ const UserForm = ({
     cancelButton,
     className
 }) => {
+    let INITIAL_STATE = {
+        name: "",
+        email: "",
+        mobile: "",
+        pan: "",
+        aadhar: "",
+        income: "",
+        amount: "",
+        tenure: ""
+    }
+
+    const [formValues, setFormValues] = useState(INITIAL_STATE);    
+
     return (
         <div className="row">
             <>
@@ -38,9 +51,7 @@ const UserForm = ({
                         name={x.name}
                         placeholder={x.prop}
                         className="form-input"
-                        onBlur={e => {
-                            console.log(e.target.value)
-                        }}
+                        onBlur={e => setFormValues({ ...formValues, [e.target.name]: e.target.value })}
                     />
                 </Form.Group>
             ))}

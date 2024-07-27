@@ -1,5 +1,6 @@
 import React from "react";
 import UserForm from "../../common/form/UserForm";
+import "./EligibilityForm.scss";
 
 const EligibilityForm = () => {
     const formObj = [
@@ -10,18 +11,18 @@ const EligibilityForm = () => {
         { prop: "Email", type: "email", name: "email" },
         { prop: "Amount", type: "number", name: "amount" },
         { prop: "Tenure (months)", type: "number", name: "tenure" },
-        { prop: "Annual Income", type: "select", name: "annual-income" },
+        { prop: "Annual Income", type: "text", name: "annual-income" },
     ];
 
     return (
         <div>
             <div >
-                <div class="title-box-d">
-                    <h3 class="title-d">Check your Eligibility</h3>
+                <div className="eligibility-title border-red2">
+                    <h3>Check your Eligibility</h3>
                 </div>
-                <div class="form">
-                    <form class="form-a">
-                        <div class="row">
+                <div className="form">
+                    <form className="form-a">
+                        <div className="row">
                             <UserForm
                                 formElements={formObj}
                                 confirmButton="Check Eligibility"

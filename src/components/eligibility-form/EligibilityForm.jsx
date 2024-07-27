@@ -3,17 +3,6 @@ import UserForm from "../../common/form/UserForm";
 import "./EligibilityForm.scss";
 
 const EligibilityForm = ({ setProgress }) => {
-    // const formObj = [
-    //     { prop: "Full Name", type: "text", name: "name" },
-    //     { prop: "Email", type: "email", name: "email" },
-    //     { prop: "Mobile", type: "tel", name: "mobile" },
-    //     { prop: "PAN", type: "text", name: "pan" },
-    //     { prop: "Aadhar", type: "text", name: "aadhar" },
-    //     { prop: "Annual Income", type: "text", name: "income" },
-    //     { prop: "Amount", type: "number", name: "amount" },
-    //     { prop: "Tenure (months)", type: "number", name: "tenure" },
-    // ];
-
     const formObj = [
         { prop: "Full Name", type: "text", name: "full-name", value: 'name', required: true, autoCapitalize: false },
         { prop: "Email", type: "email", name: "email", value: 'email', required: true, autoCapitalize: false },

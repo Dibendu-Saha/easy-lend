@@ -1,0 +1,13 @@
+.documentWrapper {
+    border: 1px solid gray;
+    width: 50%;
+    border-radius: 5px;
+    float: left;
+}
+
+.unorderedList {
+    display: grid;
+    justify-content: flex-start;
+    text-align: justify;
+    margin-top: 20px;
+}

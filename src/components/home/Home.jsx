@@ -5,6 +5,7 @@ import EligibilityForm from "../eligibility-form/EligibilityForm";
 import LoanApplyForm from "../loan-apply-form/LoanApplyForm";
 import "./Home.scss";
 import StepIndicator from "../../common/stepIndicator/StepIndicator";
+import UploadDocuments from "../uploadDocuments/UploadDocuments";
 
 const Home = () => {
 
@@ -19,11 +20,12 @@ const Home = () => {
         if (currentStep === 0)
             return <EligibilityForm setProgress={setProgress} />
         if (currentStep === 1)
-            return <LoanApplyForm />
+            return <UploadDocuments />
+        // return <LoanApplyForm />
     }
 
     return (
-        <div className="main">
+        <div>
             <Header />
             <StepIndicator currentStep={currentStep} />
             {showFormStep()}

@@ -5,15 +5,16 @@ $font-color: #4a4a4a;
 @import "rsuite/dist/rsuite.css";
 
 #root {
-  max-width: 1280px;
+  width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 10rem;
   text-align: center;
+  padding-top: 0px;
 }
 
 * {
-  margin: 0;
-  padding: 0;
+  // margin: 0;
+  // padding: 0;
   box-sizing: border-box;
 }
 
@@ -543,4 +544,19 @@ a:hover {
   visibility: visible;
   opacity: 1;
   filter: alpha(opacity=1);
+}
+
+.rs-steps-item-content:before {
+  content: '';
+  top: 15px;
+  left: 0%;
+  width: 28%;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-color: var(--rs-steps-border);
+  position: absolute;
+}
+
+.rs-steps-item-title {
+  margin-left: 10%;
 }

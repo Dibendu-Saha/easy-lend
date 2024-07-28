@@ -5,7 +5,8 @@ import "./ApplicationHistoryCard.scss";
 const ApplicationHistoryCard = ({
     arn = "",
     status = "",
-    remarks = ""
+    remarks = "",
+    onCardClick
 }) => {
     const COLOR_MAP = {
         "approved": "green",
@@ -16,7 +17,7 @@ const ApplicationHistoryCard = ({
     const currentColor = COLOR_MAP[status];
 
     return (
-        <AppCard styleProp={{ borderTop: `10px solid ${currentColor}` }} cardClass="app-card-container">
+        <AppCard onCardClick={onCardClick} styleProp={{ borderTop: `10px solid ${currentColor}` }} cardClass="app-card-container">
             <header className="app-card-title-container">
                 <h5 className="app-card-title">{arn}</h5>
                 <div style={{ background: currentColor }} className="status-indicator">

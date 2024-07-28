@@ -5,16 +5,11 @@ $font-color: #4a4a4a;
 @import "rsuite/dist/rsuite.css";
 
 #root {
-  max-width: 1280px;
+  // max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
-}
-
-* {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
+  text-align: center;
 }
 
 html {
@@ -31,11 +26,11 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  // background: #f6fff9;
 }
 
 .border {
   border: 1px solid;
-  ;
 }
 
 .border-red {

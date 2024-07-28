@@ -1,24 +1,43 @@
-.app-card-title {
-    font-size: 1.8rem;
-}
+.app-card-container {
+    box-shadow: 2px 2px 6px #afafaf;
+    background: #e1ffed;
 
-.status-indicator {
-    width: 120px;
-    height: 24px;
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1rem;
-    font-weight: 400;
-    color: #fff;
-
-    span {
-        margin-top: 3px;
+    .app-card-title {
+        font-size: 1.8rem;
     }
-}
 
-.app-card-body {
-    margin-top: 15px;
-    font-size: 1.4rem;
+    .status-indicator {
+        width: fit-content;
+        padding: 0 12px;
+        margin-top: 4px;
+        height: 24px;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1rem;
+        font-weight: 400;
+        color: #fff;
+
+        span {
+            margin-top: 3px;
+        }
+    }
+
+    .app-card-body {
+        margin-top: 15px;
+        font-size: 1.4rem;
+        max-height: 100px;
+
+        p {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+        }
+    }
+
+    :hover {
+        cursor: pointer;
+    }
 }

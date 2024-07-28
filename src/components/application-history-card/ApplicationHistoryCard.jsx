@@ -3,9 +3,9 @@ import { AppCard } from '../../common/app-components/AppComponents';
 import "./ApplicationHistoryCard.scss";
 
 const ApplicationHistoryCard = ({
-    arn,
-    status,
-    remarks
+    arn = "",
+    status = "",
+    remarks = ""
 }) => {
     const COLOR_MAP = {
         "approved": "green",
@@ -20,11 +20,11 @@ const ApplicationHistoryCard = ({
             <header className="app-card-title-container">
                 <h5 className="app-card-title">{arn}</h5>
                 <div style={{ background: currentColor }} className="status-indicator">
-                    <span>{status}</span>
+                    <span>{status.toLocaleUpperCase()}</span>
                 </div>
             </header>
 
-            <main className="app-card-body">
+            <main className="app-card-body border1">
                 <p>
                     {remarks}
                 </p>

@@ -1,4 +1,11 @@
+.history-page-title {
+    position: absolute;
+    top: 100px;
+}
+
 .application-history-cards {
     display: flex;
     gap: 30px;
+    flex-wrap: wrap;
+    margin-top: -250px;
 }

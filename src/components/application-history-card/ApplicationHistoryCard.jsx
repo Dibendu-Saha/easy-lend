@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import { AppCard } from '../../common/app-components/AppComponents';
 import "./ApplicationHistoryCard.scss";
 
@@ -6,7 +7,8 @@ const ApplicationHistoryCard = ({
     arn = "",
     status = "",
     remarks = "",
-    onCardClick
+    onCardClick,
+    onButtonClick
 }) => {
     const COLOR_MAP = {
         "approved": "green",
@@ -17,19 +19,31 @@ const ApplicationHistoryCard = ({
     const currentColor = COLOR_MAP[status];
 
     return (
-        <AppCard onCardClick={onCardClick} styleProp={{ borderTop: `10px solid ${currentColor}` }} cardClass="app-card-container">
+        <AppCard styleProp={{ borderTop: `10px solid ${currentColor}` }} cardClass="app-card-container">
             <header className="app-card-title-container">
-                <h5 className="app-card-title">{arn}</h5>
+                <h5 className="app-card-title">ARN: {arn}</h5>
                 <div style={{ background: currentColor }} className="status-indicator">
                     <span>{status.toLocaleUpperCase()}</span>
                 </div>
             </header>
 
-            <main className="app-card-body border1">
+            <main className="app-card-body">
                 <p>
                     {remarks}
                 </p>
             </main>
+
+            <footer className="app-card-footer">
+                <Button
+                    key={arn}
+                    variant=""
+                    size="lg"
+                    className="btn-view-details"
+                    onClick={onButtonClick}
+                >
+                    View
+                </Button>
+            </footer>
         </AppCard>
     )
 }

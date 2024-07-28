@@ -16,12 +16,12 @@ export const AppCard = ({
 );
 
 export const AppModal = ({
-    show,
+    show = false,
     onClose,
-    centered,
-    title,
-    confirmButton,
-    cancelButton,
+    centered = false,
+    title = "",
+    confirmButton = "",
+    cancelButton = "",
     children
 }) => (
     <Modal show={show} onHide={onClose} centered={centered}>
@@ -32,9 +32,16 @@ export const AppModal = ({
             {children}
         </Modal.Body>
         <Modal.Footer>
-            <Button variant="secondary" onClick={onClose}>
-                {cancelButton}
-            </Button>
+            {confirmButton.length > 0 && (
+                <Button variant="primary" onClick={onClose}>
+                    {confirmButton}
+                </Button>
+            )}
+            {cancelButton.length > 0 && (
+                <Button variant="secondary" onClick={onClose}>
+                    {cancelButton}
+                </Button>
+            )}
         </Modal.Footer>
     </Modal>
 )

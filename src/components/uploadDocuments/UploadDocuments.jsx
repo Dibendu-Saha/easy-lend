@@ -2,13 +2,16 @@ import React from 'react';
 import FilePicker from "./file-picker";
 import './uploadDocuments.scss';
 import { Button } from 'react-bootstrap';
+import PersonalDetails from '../personalDetails/PersonalDetails';
 
-const UploadDocuments = () => {
+const UploadDocuments = ({ initialValues, responseData }) => {
     return (
         <>
+            <PersonalDetails initialValues={initialValues} responseData={responseData} />
             <div style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row' }}>
+                <FilePicker uploadURL={"http://dlptest.com/http-post/"} />
                 <div className='documentWrapper'>
-                    <h5>Please upload below documents</h5>
+                    <strong>Please upload below documents</strong>
                     <ul className='unorderedList'>
                         <li> Last 3 months salary slips</li>
                         <li> Last 2 years ITR</li>
@@ -20,7 +23,6 @@ const UploadDocuments = () => {
                         <li> 1 cancelled Cheque</li>
                     </ul>
                 </div>
-                <FilePicker uploadURL={"http://dlptest.com/http-post/"} />
             </div>
             <div className="form-group button-group" style={{ marginTop: 50 }}>
                 <Button
@@ -28,7 +30,7 @@ const UploadDocuments = () => {
                     className="button"
                     onClick={() => alert('submit')}
                 >
-                    Next
+                    Submit
                 </Button>
             </div>
         </>

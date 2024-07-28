@@ -10,27 +10,9 @@ const UserForm = ({
     action,
     handleTextChange
 }) => {
-    const INITIAL_STATE = {
-        name: "",
-        email: "",
-        mobile: "",
-        pan: "",
-        aadhar: "",
-        income: "",
-        amount: "",
-        tenure: ""
-    };
-
-    const [formValues, setFormValues] = useState(INITIAL_STATE);
 
     return (
         <div className="row">
-            {/* {formTitle.length > 0 && (
-                <div className="form-title">
-                    <h2>{formTitle}</h2>
-                </div>
-            )} */}
-
             {formElements.map((x, index) => (
                 <Form.Group className="col-md-6 mb-3" controlId="exampleForm.ControlTextarea1" key={index}>
                     <Form.Control
@@ -42,11 +24,16 @@ const UserForm = ({
                         onBlur={(event) => handleTextChange(x.value, event)}
                         style={{ padding: '1.5rem 1rem', textTransform: x.autoCapitalize ? 'uppercase' : 'none' }}
                         autoComplete="true"
-                        required
+                        required={x.required}
                     />
                 </Form.Group>
             ))}
-
+            <select className="form-select col-md-6 form-select-lg mb-3" aria-label="Select Occupation"
+                onChange={(event) => handleTextChange('occupation', event)}>
+                <option value="none" selected>Select Occupation</option>
+                <option value="Salaried">Salaried</option>
+                <option value="Self-employed">Self-employed</option>
+            </select>
             {/* <div className="col-8" style={{ width: '54%' }}>
                 <div className="form-group" style={{ marginTop: 20 }}>
                     <input type="checkbox" name="consentCheckbox" /> I am providing consent to use my information to contact me for further updates.

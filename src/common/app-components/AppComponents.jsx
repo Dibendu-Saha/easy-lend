@@ -7,9 +7,10 @@ export const AppCard = ({
     cardClass = null,
     titleClass = null,
     bodyClass = null,
+    styleProp = {},
     children
 }) => (
-    <Card className={`${cardClass ?? ""} app-card-main`}>
+    <Card style={styleProp} className={`${cardClass ?? ""} app-card-main`}>
         <Card.Body>
             {children}
         </Card.Body>

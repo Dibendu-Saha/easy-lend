@@ -1,0 +1,24 @@
+.app-card-title {
+    font-size: 1.8rem;
+}
+
+.status-indicator {
+    width: 120px;
+    height: 24px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #fff;
+
+    span {
+        margin-top: 3px;
+    }
+}
+
+.app-card-body {
+    margin-top: 15px;
+    font-size: 1.4rem;
+}

@@ -1,0 +1,50 @@
+[
+    {
+        "success": true,
+        "data": {
+            "arn": "1000392938",
+            "userId": "string",
+            "status": "approved",
+            "remarks": "Your latest loan application have been approved. Please make sure to submit all further documents for successful processing of your loan.",
+            "completedSteps": [
+                "string"
+            ],
+            "pendingSteps": [
+                "string"
+            ]
+        },
+        "message": "string"
+    },
+    {
+        "success": true,
+        "data": {
+            "arn": "1042392112",
+            "userId": "string",
+            "status": "pending",
+            "remarks": "Your latest loan application is under review. We'll inform you once the status has been updated.",
+            "completedSteps": [
+                "string"
+            ],
+            "pendingSteps": [
+                "string"
+            ]
+        },
+        "message": "string"
+    },
+    {
+        "success": true,
+        "data": {
+            "arn": "1800988820",
+            "userId": "string",
+            "status": "rejected",
+            "remarks": "Your latest loan application have been rejected. Please make sure to submit all further documents for successful processing of your loan.",
+            "completedSteps": [
+                "string"
+            ],
+            "pendingSteps": [
+                "string"
+            ]
+        },
+        "message": "string"
+    }
+]

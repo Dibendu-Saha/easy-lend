@@ -8,8 +8,16 @@ const UserForm = ({
     formElements,
     confirmButton,
     action,
-    handleTextChange
+    handleTextChange,
+    enableActionButton,
+    checkConsent
 }) => {
+    const [occupation, setOccupation] = useState("none");
+
+    const selectOccupation = (event) => {
+        setOccupation(event.target.value);
+        handleTextChange('occupation', event);
+    }
 
     return (
         <div className="row">
@@ -29,18 +37,14 @@ const UserForm = ({
                 </Form.Group>
             ))}
             <select className="form-select col-md-6 form-select-lg mb-3" aria-label="Select Occupation"
-                onChange={(event) => handleTextChange('occupation', event)}>
-                <option value="none" selected>Select Occupation</option>
+                onChange={(event) => selectOccupation(event)} defaultValue="none" value={occupation}
+                style={{ marginLeft: 7, width: '49%', height: '12%' }}>
+                <option value="none">Select Occupation</option>
                 <option value="Salaried">Salaried</option>
                 <option value="Self-employed">Self-employed</option>
             </select>
-            {/* <div className="col-8" style={{ width: '54%' }}>
-                <div className="form-group" style={{ marginTop: 20 }}>
-                    <input type="checkbox" name="consentCheckbox" /> I am providing consent to use my information to contact me for further updates.
-                </div>
-            </div> */}
             <div className="form-group col-10" style={{ width: '60%', textAlign: 'justify' }}>
-                <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" />
+                <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" onClick={checkConsent} />
                 <label className="form-check-label" htmlFor="defaultCheck1" style={{ marginLeft: 10 }}>
                     I am providing consent to use my information to contact me for further updates.
                 </label>
@@ -48,6 +52,7 @@ const UserForm = ({
             <div className="form-group button-group" style={{ marginTop: 50 }}>
                 <Button
                     variant="success"
+                    disabled={enableActionButton ? false : true}
                     className="button"
                     onClick={action}
                 >

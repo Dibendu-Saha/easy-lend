@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import UserForm from "../../common/form/UserForm";
 import "./EligibilityForm.scss";
 
-const EligibilityForm = ({ handleTextChange, action }) => {
+const EligibilityForm = ({ handleTextChange, action, enableActionButton, checkConsent }) => {
     const formObj = [
         { prop: "Full Name", type: "text", name: "full-name", value: 'fullName', required: true, autoCapitalize: false },
         { prop: "Email", type: "email", name: "email", value: 'email', required: true, autoCapitalize: false },
@@ -24,6 +24,8 @@ const EligibilityForm = ({ handleTextChange, action }) => {
                         confirmButton="Check Eligibility"
                         action={action}
                         handleTextChange={(key, event) => handleTextChange(key, event)}
+                        checkConsent={checkConsent}
+                        enableActionButton={enableActionButton}
                     />
                 </div>
             </form>

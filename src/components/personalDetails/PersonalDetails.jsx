@@ -36,6 +36,7 @@ function PersonalDetails({ initialValues, responseData }) {
 
                                 </Col>
                                 <Col sm={12} lg={4}>
+                                    <div>Request Id: <small>{responseData.requestId}</small></div>
                                     <div>Loan type: <small>{responseData.productCode}</small></div>
                                     <div>Loan Amount: <small>₹{initialValues.amount.toLocaleString()}</small></div>
                                     <div>Tenure: <small>{initialValues.tenureMonths} months</small></div>

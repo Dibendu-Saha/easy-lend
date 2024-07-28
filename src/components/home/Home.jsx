@@ -13,6 +13,7 @@ const Home = () => {
     const [currentStep, setCurrentStep] = useState(0);
     const [formData, setFormData] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [enableActionButton, setEnableActionButton] = useState(false);
     const [responeData, setResponseData] = useState([]);
 
     const INITIAL_STATE = {
@@ -29,7 +30,22 @@ const Home = () => {
     };
 
     const handleTextChange = (key, event) => {
-        INITIAL_STATE[key] = event.nativeEvent.target.value;
+        INITIAL_STATE[key] = event.target.value;
+    }
+
+    const enableDisableActionButton = () => {
+        let _keys = Object.keys(INITIAL_STATE);
+        let _ifBlank = false;
+        for (let index = 0; index < _keys.length; index++) {
+            if (INITIAL_STATE[_keys[index]] === "") {
+                _ifBlank = true;
+            }
+        }
+
+        if (_ifBlank)
+            setEnableActionButton(false)
+        else
+            setEnableActionButton(true)
     }
 
     const setProgress = () => {
@@ -41,9 +57,8 @@ const Home = () => {
         setLoading(true);
         //here we can find values
         axios.post('https://bankapi4.bsite.net/api/v1/Loan/products/H0001/eligibility', {
-            ...INITIAL_STATE
+            ...formData
         }).then(res => {
-            setFormData(INITIAL_STATE);
             setResponseData(res.data.data);
             setProgress();
             setLoading(false);
@@ -58,9 +73,17 @@ const Home = () => {
                 setProgress={setProgress}
                 handleTextChange={(key, event) => handleTextChange(key, event)}
                 action={checkEligibility}
+                enableActionButton={enableActionButton}
+                checkConsent={checkConsent}
             />
         if (currentStep === 1)
             return <UploadDocuments initialValues={formData} responseData={responeData} />
+    }
+
+    const checkConsent = (event) => {
+        INITIAL_STATE.consent = event.target.checked;
+        setFormData(INITIAL_STATE);
+        enableDisableActionButton();
     }
 
     const setStep = (step) => {

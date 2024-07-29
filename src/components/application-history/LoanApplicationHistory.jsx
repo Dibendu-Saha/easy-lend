@@ -7,7 +7,6 @@ import "./LoanApplicationHistory.scss";
 
 const LoanApplicationHistory = () => {
     const USER_ID = "ABCDEFGDFG", //axjoni, ABCDEFGDFG;
-        CURR_REGEX = /\B(?=(\d{3})+(?!\d))/g,
         COLOR_MAP = {
             "Eligible": "green",
             "SUBMITTED": "green",
@@ -189,11 +188,11 @@ const LoanApplicationHistory = () => {
                         <div className="data-grid-col-2">
                             <div className="info-box">
                                 <div className="info-lbl">Annual Income</div>
-                                <div className="info-data">{annualIncome.toString().replace(CURR_REGEX, ",")}</div>
+                                <div className="info-data">{annualIncome.toLocaleString('en-IN')}</div>
                             </div>
                             <div className="info-box">
                                 <div className="info-lbl">Loan Amount</div>
-                                <div className="info-data">{loanAmount.toString().replace(CURR_REGEX, ",")}</div>
+                                <div className="info-data">{loanAmount.toLocaleString('en-IN')}</div>
                             </div>
                             <div className="info-box">
                                 <div className="info-lbl">Tenure (months)</div>
@@ -201,7 +200,7 @@ const LoanApplicationHistory = () => {
                             </div>
                             <div className="info-box">
                                 <div className="info-lbl">EMI</div>
-                                <div className="info-data">{(Number(emi).toFixed(2).toString().replace(CURR_REGEX, ","))}</div>
+                                <div className="info-data">{Number(emi).toLocaleString('en-IN')}</div>
                             </div>
                             <div className="info-box">
                                 <div className="info-lbl">Status</div>

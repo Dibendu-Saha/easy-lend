@@ -4,6 +4,24 @@
     text-align: left;
 }
 
+.status-indicator1 {
+    width: fit-content;
+    padding: 0 12px;
+    height: 24px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #fff;
+
+    span {
+        margin-top: 3px;
+        font-weight: 600;
+    }
+}
+
 .btn-view-doc {
     background: #2eca6a;
     color: #fff;

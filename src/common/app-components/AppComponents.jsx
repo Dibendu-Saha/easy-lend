@@ -61,4 +61,11 @@ export const AppModal = ({
     </Modal>
 )
 
+export const StatusIndicator = ({ status, color, className }) => {
+    return (
+        <div style={{ background: color }} className={`${className ?? ""} status-indicator1`}>
+            <span>{status.toLocaleUpperCase()}</span>
+        </div>
+    )
+}
 

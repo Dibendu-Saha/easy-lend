@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ApplicationHistoryCard from "../application-history-card/ApplicationHistoryCard";
 import mockData from "../../service/mocks/application-history-mock.json";
-import { AppModal } from "../../common/app-components/AppComponents";
+import { AppModal, StatusIndicator } from "../../common/app-components/AppComponents";
 import "./LoanApplicationHistory.scss";
 
 const LoanApplicationHistory = () => {
@@ -204,9 +204,10 @@ const LoanApplicationHistory = () => {
                             </div>
                             <div className="info-box">
                                 <div className="info-lbl">Status</div>
-                                <div style={{ background: statusColor }} className="info-data status-indicator">
-                                    <span>{status.toLocaleUpperCase()}</span>
-                                </div>
+                                <StatusIndicator 
+                                    status={status.toLocaleUpperCase()}
+                                    color={statusColor}
+                                />
                             </div>
                         </div>
                     </div>

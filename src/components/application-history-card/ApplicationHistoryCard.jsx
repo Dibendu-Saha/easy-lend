@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import { AppCard } from '../../common/app-components/AppComponents';
+import { AppCard, StatusIndicator } from '../../common/app-components/AppComponents';
 import "./ApplicationHistoryCard.scss";
 
 const ApplicationHistoryCard = ({
@@ -33,9 +33,11 @@ const ApplicationHistoryCard = ({
                         : <>ARN: {arn}</>
                     }
                 </h5>
-                <div style={{ background: currentColor }} className="status-indicator">
-                    <span>{status.toLocaleUpperCase()}</span>
-                </div>
+                <StatusIndicator
+                    status={status.toLocaleUpperCase()}
+                    color={currentColor}
+                    className="eligibility-status-indicator"
+                />
             </header>
 
             <main className="app-card-body">

@@ -14,23 +14,8 @@ $view-btn-color: #198754;
         font-size: 1.8rem;
     }
 
-    .status-indicator {
-        width: fit-content;
-        padding: 0 12px;
+    .eligibility-status-indicator {
         margin-top: 4px;
-        height: 24px;
-        border-radius: 15px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 1rem;
-        font-weight: 400;
-        color: #fff;
-
-        span {
-            margin-top: 3px;
-            font-weight: 600;
-        }
     }
 
     .app-card-body {

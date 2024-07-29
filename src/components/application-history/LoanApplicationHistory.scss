@@ -11,17 +11,17 @@
 
 .data-grid {
     display: flex;
-    gap: 120px;
+    gap: 190px;
     padding: 0 20px;
 
     .info-box {
-        display: flex;
+        // display: flex;
         justify-content: space-between;
-        gap: 120px;
-        margin-bottom: 6px;
+        gap: 190px;
+        margin-bottom: 20px;
 
         .info-data {
-            margin-left: auto !important;
+            // margin-left: auto !important;
         }
 
         .status-indicator {
@@ -50,6 +50,10 @@
 
 .info-box-remarks {
     display: flex;
-    gap: 60px;
+    gap: 30px;
     padding: 0 20px;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background: papayawhip;
 }

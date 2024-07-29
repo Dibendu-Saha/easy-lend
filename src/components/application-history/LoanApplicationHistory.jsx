@@ -134,7 +134,7 @@ const LoanApplicationHistory = () => {
 
     return (
         <div className="history-page">
-            <div className="eligibility-history-page-title">
+            <div className="history-title eligibility-history-page-title">
                 <h3>Loan Eligibility History</h3>
             </div>
 
@@ -154,7 +154,7 @@ const LoanApplicationHistory = () => {
             </div>
 
 
-            <div className="application-history-page-title">
+            <div className="history-title application-history-page-title">
                 <h3>Loan Application History</h3>
             </div>
 
@@ -178,7 +178,6 @@ const LoanApplicationHistory = () => {
 
             <AppModal
                 arn={arn}
-                // title={`Request #: ${arn}`}
                 title={arn}
                 show={modalOpen}
                 centered={true}

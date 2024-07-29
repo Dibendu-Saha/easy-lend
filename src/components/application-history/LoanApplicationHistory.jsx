@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Spinner } from "react-bootstrap";
 import ApplicationHistoryCard from "../application-history-card/ApplicationHistoryCard";
 import mockData from "../../service/mocks/application-history-mock.json";
 import { AppModal, StatusIndicator } from "../../common/app-components/AppComponents";
 import "./LoanApplicationHistory.scss";
 
 const LoanApplicationHistory = () => {
-    const USER_ID = "ABCDEFGDFG", //axjoni, ABCDEFGDFG;
+    const USER_ID = "axjoni", //axjoni, ABCDEFGDFG;
         COLOR_MAP = {
             "Eligible": "green",
             "SUBMITTED": "green",
@@ -18,7 +19,9 @@ const LoanApplicationHistory = () => {
             "Not Eligible": "red",
         };
 
-    const [arn, setArn] = useState(""),
+    const [eligibilityLoaded, setEligibilityLoaded] = useState(false),
+        [applicationsloaded, setApplicationsloaded] = useState(false),
+        [arn, setArn] = useState(""),
         [status, setStatus] = useState(""),
         [statusColor, setStatusColor] = useState(""),
         [name, setName] = useState(""),
@@ -68,11 +71,15 @@ const LoanApplicationHistory = () => {
         const eligibilityData = response.data.data.eligibilityChecks;
         const loanApplicationData = response.data.data.loanApplications;
 
-        if (eligibilityData)
+        if (eligibilityData) {
             setEligibilityHistoryData(eligibilityData);
+            setEligibilityLoaded(true);
+        }
 
-        if (loanApplicationData)
+        if (loanApplicationData) {
             setLoanApplicationHistoryDataHistoryData(loanApplicationData);
+            setApplicationsloaded(true);
+        }
     }
 
     const openModal = (e) => {
@@ -139,8 +146,9 @@ const LoanApplicationHistory = () => {
             </div>
 
             <div className="eligibility-history-cards history-cards">
-                {(eligibilityHistoryData && eligibilityHistoryData.length > 0) && (
-                    eligibilityHistoryData.map(
+                {(!eligibilityHistoryData)
+                    ? <Spinner animation="border" />
+                    : eligibilityHistoryData.map(
                         response =>
                             <ApplicationHistoryCard
                                 key={response.requestId}
@@ -149,8 +157,7 @@ const LoanApplicationHistory = () => {
                                 remarks={response.remarks}
                                 onButtonClick={e => openModal(e)}
                             />
-                    )
-                )}
+                    )}
             </div>
 
 
@@ -159,8 +166,9 @@ const LoanApplicationHistory = () => {
             </div>
 
             <div className="application-history-cards history-cards">
-                {(loanApplicationHistoryData && loanApplicationHistoryData.length > 0) && (
-                    loanApplicationHistoryData.map(
+                {(!loanApplicationHistoryData)
+                    ? <Spinner animation="border" />
+                    : loanApplicationHistoryData.map(
                         response =>
                             <ApplicationHistoryCard
                                 key={response.requestId}
@@ -169,8 +177,7 @@ const LoanApplicationHistory = () => {
                                 remarks={response.remarks}
                                 onButtonClick={e => openModal(e)}
                             />
-                    )
-                )}
+                    )}
             </div>
 
 
@@ -203,7 +210,7 @@ const LoanApplicationHistory = () => {
                                     <div className="info-lbl">{x.label}</div>
                                     <div className="info-data">{x.value}</div>
                                 </div>
-                            ))}                            
+                            ))}
                         </div>
                     </div>
 

@@ -20,10 +20,6 @@ const Confirmation = ({ arn }) => {
                 <p className='note'>Thank you for choosing us as your trusted partner in this important journey.</p>
                 <p class="note">We will keep you updated with the latest information regarding your application status.</p>
             </div>
-            {/* <div>Congratulations !!!</div>
-            <div>Your loan application number is: ARN567438926368</div>
-            <div>We'll update you soon</div>
-            <div>Thank you for making us your partner in your journey</div> */}
         </div>
     )
 }

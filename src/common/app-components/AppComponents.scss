@@ -7,9 +7,19 @@
 .btn-view-doc {
     background: #2eca6a;
     color: #fff;
+
+    &:hover {
+        background: #229950;
+        color: #fff;
+    }
 }
 
 .btn-close-modal {
     border: 1px solid #cacaca;
     color: #919191;
+
+    &:hover {
+        background: #bdbdbd;
+        color: #fff;
+    }
 }

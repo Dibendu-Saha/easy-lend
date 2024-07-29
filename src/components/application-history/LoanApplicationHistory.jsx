@@ -149,7 +149,8 @@ const LoanApplicationHistory = () => {
 
             <AppModal
                 arn={arn}
-                title={`Request #: ${arn}`}
+                // title={`Request #: ${arn}`}
+                title={arn}
                 onClick={() => downloadFiles(base64Data)}
                 onClose={closeModal}
                 show={modalOpen}

@@ -41,7 +41,7 @@ const UserForm = ({
             ))}
             <select className="form-select col-md-6 form-select-lg mb-3" aria-label="Select Occupation" id="slctOccupation"
                 onChange={(event) => selectOccupation(event)} defaultValue={occupation}
-                style={{ marginLeft: 7, width: '49%', height: '12%' }}>
+                style={{ marginLeft: 7, width: '49%', height: '11%' }}>
                 <option value="none">Select Occupation</option>
                 <option value="Salaried">Salaried</option>
                 <option value="Self-employed">Self-employed</option>

@@ -5,16 +5,9 @@ $font-color: #4a4a4a;
 @import "rsuite/dist/rsuite.css";
 
 #root {
-  width: 100%;
-  margin: 0 auto;
-  padding: 10rem;
-  // text-align: center;
-  padding-top: 0px;
-}
-
-* {
-  // margin: 0;
-  // padding: 0;
+  // max-width: 1280px;
+  margin: 0;
+  padding: 2rem;
   box-sizing: border-box;
 }
 
@@ -27,16 +20,13 @@ body {
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
   color: $font-color;
-  /* max-width: 1600px; */
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  padding-top: 80px;
 }
 
 .border {
   border: 1px solid;
-  ;
 }
 
 .border-red {

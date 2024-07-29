@@ -10,7 +10,8 @@ import Confirmation from "../confirmation/Confirmation";
 const Home = () => {
 
     const [currentStep, setCurrentStep] = useState(0);
-    const [formData, setFormData] = useState([]);
+    const [formData, setFormData] = useState({});
+
     const [loading, setLoading] = useState(false);
     const [enableActionButton, setEnableActionButton] = useState(false);
     const [responeData, setResponseData] = useState([]);
@@ -72,6 +73,7 @@ const Home = () => {
         }).catch((err) => {
             setLoading(false);
         })
+      
     }
 
     const showFormStep = () => {
@@ -86,7 +88,7 @@ const Home = () => {
                     loading={loading}
                 />
             else if (currentStep === 1)
-                return <UploadDocuments initialValues={formData} responseData={responeData} />
+                return <UploadDocuments initialValues={formData} moveToNextStep={setProgress} responseData={responeData} />
             else if (currentStep > 1)
                 return <Confirmation arn={responeData.requestId} />
         }

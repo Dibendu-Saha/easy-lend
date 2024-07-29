@@ -95,26 +95,6 @@ const FilePicker = ({ accept, onFileChange=()=>{}}) => {
                     />
                 </div>
             ) : null}
-
-            {/* progress bar */}
-            {/* {canShowProgress ? (
-                <div className={styles.files_list_progress_wrapper}>
-                    <progress value={progress} max={100} style={{ width: "100%" }} />
-                </div>
-            ) : null} */}
-
-            {/* upload button */}
-            {/* {files.length ? (
-                <button
-                    onClick={handleUpload}
-                    className={classNames(
-                        styles.upload_button,
-                        uploadComplete || uploadStarted ? styles.disabled : ""
-                    )}
-                >
-                    {`Upload ${files.length} Files`}
-                </button>
-            ) : null} */}
         </div>
     );
 };

@@ -38,15 +38,15 @@ function PersonalDetails({ initialValues, responseData }) {
                                 <Col sm={12} lg={4}>
                                     <div>Request Id: <small>{responseData.requestId}</small></div>
                                     <div>Loan type: <small>Home Loan</small></div>
-                                    <div>Loan Amount: <small>₹{Number(initialValues.amount).toLocaleString("en-IN")}</small></div>
-                                    <div>Tenure: <small>{initialValues.tenureMonths} months</small></div>
-                                    <div>Interest Rate: <small>{responseData.interestRate.toFixed(2)}%</small></div>
+                                    <div>Occupation: <small>{initialValues.occupation}</small></div>
+                                    <div>Annual Income: <small>₹{Number(initialValues.annualIncome).toLocaleString("en-IN")}</small></div>
                                 </Col>
                                 <Col sm={12} lg={4}>
                                     <div>Status: {getLoanStatus(responseData.status)}</div>
+                                    <div>Loan Amount: <small>₹{Number(initialValues.amount).toLocaleString("en-IN")}</small></div>
+                                    <div>Tenure: <small>{initialValues.tenureMonths} months</small></div>
+                                    <div>Interest Rate: <small>{responseData.interestRate.toFixed(2)}%</small></div>
                                     <div>EMI: <small>₹{Number(responseData.emi.toFixed(2)).toLocaleString()}</small></div>
-                                    <div>Occupation: <small>{initialValues.occupation}</small></div>
-                                    <div>Annual Income: <small>₹{Number(initialValues.annualIncome).toLocaleString("en-IN")}</small></div>
                                 </Col>
                             </Row>
                         </Card.Body>

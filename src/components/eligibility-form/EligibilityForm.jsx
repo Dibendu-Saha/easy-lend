@@ -6,8 +6,8 @@ const EligibilityForm = ({ handleTextChange, action, enableActionButton, checkCo
     const formObj = [
         { prop: "Full Name", type: "text", name: "full-name", value: 'fullName', required: true, autoCapitalize: false },
         { prop: "Email", type: "email", name: "email", value: 'email', required: true, autoCapitalize: false },
-        { prop: "Mobile Number", type: "tel", name: "mobile", value: 'mobile', required: true, autoCapitalize: false },
-        { prop: "PAN", type: "text", name: "pan", value: 'pan', required: true, autoCapitalize: true },
+        { prop: "Mobile Number", type: "tel", name: "mobile", value: 'mobile', required: true, autoCapitalize: false, maxLength: 10 },
+        { prop: "PAN", type: "text", name: "pan", value: 'pan', required: true, autoCapitalize: true, minLength: 10 },
         { prop: "Aadhar Number", type: "number", name: "aadhar", value: 'aadhaar', required: true, autoCapitalize: false },
         { prop: "Annual Income", type: "number", name: "annual-income", value: 'annualIncome', required: true, autoCapitalize: false },
         { prop: "Loan Amount", type: "number", name: "amount", value: 'amount', required: true, autoCapitalize: false },
@@ -21,7 +21,7 @@ const EligibilityForm = ({ handleTextChange, action, enableActionButton, checkCo
                     <UserForm
                         formTitle="Check your Eligibility"
                         formElements={formObj}
-                        confirmButton="Check Eligibility"
+                        confirmButton="Next"
                         action={action}
                         handleTextChange={(key, event) => handleTextChange(key, event)}
                         checkConsent={checkConsent}

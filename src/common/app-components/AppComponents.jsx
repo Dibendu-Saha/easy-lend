@@ -17,6 +17,7 @@ export const AppCard = ({
 
 export const AppModal = ({
     show = false,
+    onClick,
     onClose,
     centered = false,
     title = "",
@@ -33,7 +34,7 @@ export const AppModal = ({
         </Modal.Body>
         <Modal.Footer>
             {confirmButton.length > 0 && (
-                <Button variant="primary" onClick={onClose}>
+                <Button variant="outline-primary" size="lg" onClick={onClick}>
                     {confirmButton}
                 </Button>
             )}

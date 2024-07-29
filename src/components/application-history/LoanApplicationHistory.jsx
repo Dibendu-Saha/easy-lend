@@ -6,25 +6,28 @@ import { AppModal } from "../../common/app-components/AppComponents";
 import "./LoanApplicationHistory.scss";
 
 const LoanApplicationHistory = () => {
-    const USER_ID = "ABCDEFGDFG"; //"axjoni";
-
-    const COLOR_MAP = {
-        "Eligible": "green",
-        "Not Eligible": "red",
-    };
+    const USER_ID = "ABCDEFGDFG", //axjoni, ABCDEFGDFG;
+        COLOR_MAP = {
+            "Eligible": "green",
+            "Not Eligible": "red",
+        };
 
     const [arn, setArn] = useState(""),
         [status, setStatus] = useState(""),
         [statusColor, setStatusColor] = useState(""),
         [name, setName] = useState(""),
         [pan, setPan] = useState(""),
+        [aadhar, setAadhar] = useState(""),
         [occupation, setOccupation] = useState(""),
         [annualIncome, setAnnualIncome] = useState(""),
         [loanAmount, setLoanAmount] = useState(""),
         [tenure, setTenure] = useState(""),
+        [emi, setEmi] = useState(""),
         [remarks, setRemarks] = useState(""),
+        [base64Data, setBase64Data] = useState(),
         [modalOpen, setModalOpen] = useState(false),
-        [historyData, setHistoryData] = useState();
+        [eligibilityHistoryData, setEligibilityHistoryData] = useState(),
+        [loanApplicationHistoryData, setLoanApplicationHistoryDataHistoryData] = useState();
 
     useEffect(() => {
         getHistoryData();
@@ -32,26 +35,34 @@ const LoanApplicationHistory = () => {
 
     const getHistoryData = async () => {
         const response = await axios.get(`https://bankapi4.bsite.net/api/v1/Loan/${USER_ID}/history`);
+        const eligibilityData = response.data.data.eligibilityChecks;
+        const loanApplicationData = response.data.data.loanApplications;
 
-        const data = response.data.data.eligibilityChecks;
-        if (data)
-            setHistoryData(data);
+        if (eligibilityData)
+            setEligibilityHistoryData(eligibilityData);
+
+        if (loanApplicationData)
+            setLoanApplicationHistoryDataHistoryData(loanApplicationData);
     }
 
     const openModal = (e) => {
-        const arn = e.target.parentElement.parentElement.getElementsByClassName('app-card-title')[0].innerText.split(':')[1].trim();
-        if (arn.length) {
-            const applicationData = historyData.find(x => x.requestId === arn);
-            setArn(arn);
-            setStatus(applicationData.status);
-            setStatusColor(COLOR_MAP[applicationData.status]);
-            setRemarks(applicationData.remarks);
-            setName(applicationData.fullName);
-            setPan(applicationData.pan);
-            setOccupation(applicationData.occupation);
-            setAnnualIncome(applicationData.annualIncome);
-            setLoanAmount(applicationData.amount);
-            setTenure(applicationData.tenureMonths);
+        const id = e.target.parentElement.parentElement.getElementsByClassName('app-card-title')[0].innerText.split(':')[1].trim();
+        if (id.length) {
+            let userData = eligibilityHistoryData.find(x => x.requestId === id) ?? loanApplicationHistoryData.find(x => x.arn === id);
+
+            setArn(id);
+            setStatus(userData.status);
+            setStatusColor(COLOR_MAP[userData.status]);
+            setRemarks(userData.remarks);
+            setName(userData.fullName);
+            setPan(userData.pan);
+            setAadhar(userData.aadhaar);
+            setOccupation(userData.occupation);
+            setAnnualIncome(userData.annualIncome);
+            setLoanAmount(userData.amount);
+            setTenure(userData.tenureMonths);
+            setEmi(userData.emi);
+            setBase64Data(userData.documentsBase64);
         }
 
         setModalOpen(true);
@@ -61,19 +72,43 @@ const LoanApplicationHistory = () => {
         setModalOpen(false);
     }
 
+    const downloadFiles = (files = []) => {
+        files.forEach(fileData => {
+            const [filename, mimeType, base64String] = fileData.split('|');
+            // Create a Blob from the base64 string
+            const byteCharacters = atob(base64String);
+            const byteNumbers = new Array(byteCharacters.length);
+            for (let i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+            const byteArray = new Uint8Array(byteNumbers);
+            const blob = new Blob([byteArray], { type: mimeType });
+
+            // Create a link element and trigger the download
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+
+            // Clean up the URL object
+            URL.revokeObjectURL(link.href);
+        });
+    }
+
+
     return (
         <div className="history-page">
-            <div className="history-page-title">
+            <div className="eligibility-history-page-title">
                 <h3>Loan Eligibility History</h3>
             </div>
 
-            <div className="application-history-cards">
-                {(historyData && historyData.length) && (
-                    historyData.map(
+            <div className="eligibility-history-cards history-cards">
+                {(eligibilityHistoryData && eligibilityHistoryData.length) && (
+                    eligibilityHistoryData.map(
                         response =>
                             <ApplicationHistoryCard
                                 key={response.requestId}
-                                arn={response.requestId}
+                                reqId={response.requestId}
                                 status={response.status}
                                 remarks={response.remarks}
                                 onButtonClick={e => openModal(e)}
@@ -82,12 +117,37 @@ const LoanApplicationHistory = () => {
                 )}
             </div>
 
+
+            <div className="application-history-page-title">
+                <h3>Loan Application History</h3>
+            </div>
+
+            <div className="application-history-cards history-cards">
+                {(loanApplicationHistoryData && loanApplicationHistoryData.length) && (
+                    loanApplicationHistoryData.map(
+                        response =>
+                            <ApplicationHistoryCard
+                                key={response.requestId}
+                                arn={response.arn}
+                                status={response.status}
+                                remarks={response.remarks}
+                                onButtonClick={e => openModal(e)}
+                            />
+                    )
+                )}
+            </div>
+
+
+
+
             <AppModal
-                title={`ARN: ${arn}`}
-                cancelButton="Close"
+                title={`Request #: ${arn}`}
+                onClick={() => downloadFiles(base64Data)}
                 onClose={closeModal}
                 show={modalOpen}
                 centered={true}
+                confirmButton="View Documents"
+                cancelButton="Close"
             >
                 <div className="app-modal-body">
                     <div className="data-grid">
@@ -99,6 +159,10 @@ const LoanApplicationHistory = () => {
                             <div className="info-box">
                                 <div className="info-lbl">PAN</div>
                                 <div className="info-data">{pan}</div>
+                            </div>
+                            <div className="info-box">
+                                <div className="info-lbl">Aadhar</div>
+                                <div className="info-data">{aadhar}</div>
                             </div>
                             <div className="info-box">
                                 <div className="info-lbl">Occupation</div>
@@ -124,6 +188,10 @@ const LoanApplicationHistory = () => {
                             <div className="info-box">
                                 <div className="info-lbl">Tenure</div>
                                 <div className="info-data">{tenure}</div>
+                            </div>
+                            <div className="info-box">
+                                <div className="info-lbl">EMI</div>
+                                <div className="info-data">{Number(emi).toFixed(2)}</div>
                             </div>
                         </div>
                     </div>

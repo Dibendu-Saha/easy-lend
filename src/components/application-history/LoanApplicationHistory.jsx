@@ -36,9 +36,32 @@ const LoanApplicationHistory = () => {
         [eligibilityHistoryData, setEligibilityHistoryData] = useState(),
         [loanApplicationHistoryData, setLoanApplicationHistoryDataHistoryData] = useState();
 
+    const lblDataFormFirstColMap = [
+        { label: "Name", value: name },
+        { label: "PAN", value: pan },
+        { label: "Aadhar", value: aadhar },
+        { label: "Occupation", value: occupation }
+    ];
+
+    const lblDataFormSecondColMap = [
+        { label: "Annual Income", value: annualIncome.toLocaleString('en-IN') },
+        { label: "Loan Amount", value: loanAmount.toLocaleString('en-IN') },
+        { label: "Tenure (months)", value: tenure },
+        { label: "EMI", value: Number(emi).toLocaleString('en-IN') },
+        {
+            label: "Status",
+            value: <StatusIndicator
+                status={status.toLocaleUpperCase()}
+                color={statusColor}
+            />
+        }
+    ];
+
+
     useEffect(() => {
         getHistoryData();
     }, []);
+
 
     const getHistoryData = async () => {
         const response = await axios.get(`https://bankapi4.bsite.net/api/v1/Loan/${USER_ID}/history`);
@@ -167,48 +190,21 @@ const LoanApplicationHistory = () => {
                 <div className="app-modal-body">
                     <div className="data-grid">
                         <div className="data-grid-col-1">
-                            <div className="info-box">
-                                <div className="info-lbl">Name</div>
-                                <div className="info-data">{name}</div>
-                            </div>
-                            <div className="info-box">
-                                <div className="info-lbl">PAN</div>
-                                <div className="info-data">{pan}</div>
-                            </div>
-                            <div className="info-box">
-                                <div className="info-lbl">Aadhar</div>
-                                <div className="info-data">{aadhar}</div>
-                            </div>
-                            <div className="info-box">
-                                <div className="info-lbl">Occupation</div>
-                                <div className="info-data">{occupation}</div>
-                            </div>                            
+                            {lblDataFormFirstColMap.map(x => (
+                                <div className="info-box">
+                                    <div className="info-lbl">{x.label}</div>
+                                    <div className="info-data">{x.value}</div>
+                                </div>
+                            ))}
                         </div>
 
                         <div className="data-grid-col-2">
-                            <div className="info-box">
-                                <div className="info-lbl">Annual Income</div>
-                                <div className="info-data">{annualIncome.toLocaleString('en-IN')}</div>
-                            </div>
-                            <div className="info-box">
-                                <div className="info-lbl">Loan Amount</div>
-                                <div className="info-data">{loanAmount.toLocaleString('en-IN')}</div>
-                            </div>
-                            <div className="info-box">
-                                <div className="info-lbl">Tenure (months)</div>
-                                <div className="info-data">{tenure}</div>
-                            </div>
-                            <div className="info-box">
-                                <div className="info-lbl">EMI</div>
-                                <div className="info-data">{Number(emi).toLocaleString('en-IN')}</div>
-                            </div>
-                            <div className="info-box">
-                                <div className="info-lbl">Status</div>
-                                <StatusIndicator 
-                                    status={status.toLocaleUpperCase()}
-                                    color={statusColor}
-                                />
-                            </div>
+                            {lblDataFormSecondColMap.map(x => (
+                                <div className="info-box">
+                                    <div className="info-lbl">{x.label}</div>
+                                    <div className="info-data">{x.value}</div>
+                                </div>
+                            ))}                            
                         </div>
                     </div>
 

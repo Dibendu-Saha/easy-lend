@@ -6,23 +6,23 @@ import { DropZone } from "./drop-zone";
 import styles from "./file-picker.module.css";
 import { FilesList } from "./files-list";
 
-const FilePicker = ({ accept, uploadURL }) => {
+const FilePicker = ({ accept, onFileChange=()=>{}}) => {
     const [files, setFiles] = useState([]);
     const [progress, setProgress] = useState(0);
-    const [uploadStarted, setUploadStarted] = useState(false);
 
     // handler called when files are selected via the Dropzone component
     const handleOnChange = useCallback((files) => {
+        onFileChange(files);
         let filesArray = Array.from(files);
-
+        
         filesArray = filesArray.map((file) => ({
             id: nanoid(),
             file
         }));
 
         setFiles(filesArray);
-        setProgress(0);
-        setUploadStarted(false);
+        // setProgress(0);
+        // setUploadStarted(false);
     }, []);
 
     // handle for removing files form the files list view
@@ -31,52 +31,52 @@ const FilePicker = ({ accept, uploadURL }) => {
     }, []);
 
     // whether to show the progress bar or not
-    const canShowProgress = useMemo(() => files.length > 0, [files.length]);
+    // const canShowProgress = useMemo(() => files.length > 0, [files.length]);
 
     // execute the upload operation
-    const handleUpload = useCallback(async () => {
-        try {
-            const data = new FormData();
+    // const handleUpload = useCallback(async () => {
+    //     try {
+    //         const data = new FormData();
 
-            files.forEach((file) => {
-                data.append("file", file.file);
-            });
+    //         files.forEach((file) => {
+    //             data.append("file", file.file);
+    //         });
 
-            // const res = await axios.request({
-            //     url: uploadURL,
-            //     method: "POST",
-            //     data,
-            //     onUploadProgress: (progressEvent) => {
-            //         setUploadStarted(true);
-            //         const percentCompleted = Math.round(
-            //             (progressEvent.loaded * 100) / progressEvent.total
-            //         );
-            //         setProgress(percentCompleted);
-            //     }
-            // });
+    //         // const res = await axios.request({
+    //         //     url: uploadURL,
+    //         //     method: "POST",
+    //         //     data,
+    //         //     onUploadProgress: (progressEvent) => {
+    //         //         setUploadStarted(true);
+    //         //         const percentCompleted = Math.round(
+    //         //             (progressEvent.loaded * 100) / progressEvent.total
+    //         //         );
+    //         //         setProgress(percentCompleted);
+    //         //     }
+    //         // });
 
-            setUploadStarted(false);
-            console.log(res);
-        } catch (error) {
-            console.log(error);
-        }
-    }, [files.length]);
+    //         setUploadStarted(false);
+    //         console.log(res);
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }, [files.length]);
 
     // set progress to zero when there are no files
-    useEffect(() => {
-        if (files.length < 1) {
-            setProgress(0);
-        }
-    }, [files.length]);
+    // useEffect(() => {
+    //     if (files.length < 1) {
+    //         setProgress(0);
+    //     }
+    // }, [files.length]);
 
     // set uploadStarted to false when the upload is complete
-    useEffect(() => {
-        if (progress === 100) {
-            setUploadStarted(false);
-        }
-    }, [progress]);
+    // useEffect(() => {
+    //     if (progress === 100) {
+    //         setUploadStarted(false);
+    //     }
+    // }, [progress]);
 
-    const uploadComplete = useMemo(() => progress === 100, [progress]);
+    // const uploadComplete = useMemo(() => progress === 100, [progress]);
 
     return (
         <div className={styles.wrapper}>
@@ -91,7 +91,7 @@ const FilePicker = ({ accept, uploadURL }) => {
                     <FilesList
                         files={files}
                         onClear={handleClearFile}
-                        uploadComplete={uploadComplete}
+                        uploadComplete={()=>{}}
                     />
                 </div>
             ) : null}

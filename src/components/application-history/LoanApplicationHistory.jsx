@@ -32,6 +32,7 @@ const LoanApplicationHistory = () => {
         [emi, setEmi] = useState(""),
         [remarks, setRemarks] = useState(""),
         [base64Data, setBase64Data] = useState(),
+        [loanApplicationCardFlag, setLoanApplicationCardFlag] = useState(false),
         [modalOpen, setModalOpen] = useState(false),
         [eligibilityHistoryData, setEligibilityHistoryData] = useState(),
         [loanApplicationHistoryData, setLoanApplicationHistoryDataHistoryData] = useState();
@@ -55,7 +56,13 @@ const LoanApplicationHistory = () => {
     const openModal = (e) => {
         const id = e.target.parentElement.parentElement.getElementsByClassName('app-card-title')[0].innerText.split(':')[1].trim();
         if (id.length) {
-            let userData = eligibilityHistoryData.find(x => x.requestId === id) ?? loanApplicationHistoryData.find(x => x.arn === id);
+            setLoanApplicationCardFlag(false);
+            let userData = eligibilityHistoryData.find(x => x.requestId === id);
+
+            if (!userData) {
+                userData = loanApplicationHistoryData.find(x => x.arn === id);
+                setLoanApplicationCardFlag(true);
+            }
 
             setArn(id);
             setStatus(userData.status);
@@ -151,12 +158,12 @@ const LoanApplicationHistory = () => {
                 arn={arn}
                 // title={`Request #: ${arn}`}
                 title={arn}
-                onClick={() => downloadFiles(base64Data)}
-                onClose={closeModal}
                 show={modalOpen}
                 centered={true}
-                confirmButton="View Documents"
+                confirmButton={loanApplicationCardFlag ? "View Documents" : ""}
+                onClick={() => downloadFiles(base64Data)}
                 cancelButton="Close"
+                onClose={closeModal}
             >
                 <div className="app-modal-body">
                     <div className="data-grid">

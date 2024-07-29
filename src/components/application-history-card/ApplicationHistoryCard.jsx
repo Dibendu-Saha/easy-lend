@@ -11,19 +11,18 @@ const ApplicationHistoryCard = ({
     onButtonClick
 }) => {
     const COLOR_MAP = {
-        "approved": "green",
-        "pending": "orange",
-        "rejected": "red",
+        "Eligible": "green",
+        "Not Eligible": "red",
     };
 
     const currentColor = COLOR_MAP[status];
 
     return (
-        <AppCard styleProp={{ borderTop: `10px solid ${currentColor}` }} cardClass="app-card-container">
+        <AppCard styleProp={{ borderTop: `3px solid ${currentColor}` }} cardClass="app-card-container">
             <header className="app-card-title-container">
                 <h5 className="app-card-title">ARN: {arn}</h5>
                 <div style={{ background: currentColor }} className="status-indicator">
-                    <span>{status.toLocaleUpperCase()}</span>
+                    <span>{status.toLocaleUpperCase()}</span>                    
                 </div>
             </header>
 
@@ -41,7 +40,7 @@ const ApplicationHistoryCard = ({
                     className="btn-view-details"
                     onClick={onButtonClick}
                 >
-                    View
+                    Details
                 </Button>
             </footer>
         </AppCard>

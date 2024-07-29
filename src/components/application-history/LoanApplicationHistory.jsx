@@ -1,16 +1,35 @@
-import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import ApplicationHistoryCard from "../application-history-card/ApplicationHistoryCard";
-import data from "../../service/mocks/application-history-mock.json";
-import "./LoanApplicationHistory.scss";
+import mockData from "../../service/mocks/application-history-mock.json";
 import { AppModal } from "../../common/app-components/AppComponents";
+import "./LoanApplicationHistory.scss";
 
 const LoanApplicationHistory = () => {
-    let _mock_response_ = data;
+    const [arn, setArn] = useState(""),
+        [status, setStatus] = useState(""),
+        [remarks, setRemarks] = useState(""),
+        [modalOpen, setModalOpen] = useState(false),
+        [historyData, setHistoryData] = useState();
 
-    const [modalOpen, setModalOpen] = useState(false);
 
-    const openModal = () => {
+    useEffect(() => {
+        getHistoryData();
+    }, []);
+
+    const getHistoryData = async () => {
+        const response = await axios.get("https://bankapi4.bsite.net/api/v1/Loan/axjoni/history");
+
+        const data = response.data.data.eligibilityChecks;
+        if (data) {
+            setHistoryData(data);
+            // setArn(data.requestId);
+            // setStatus(data.status);
+            // setRemarks(data.remarks);
+        }
+    }
+
+    const openModal = (e) => {
         setModalOpen(true);
     }
 
@@ -25,27 +44,31 @@ const LoanApplicationHistory = () => {
             </div>
 
             <div className="application-history-cards">
-                {_mock_response_.length && (
-                    _mock_response_.map(
+                {(historyData && historyData.length) && (
+                    historyData.map(
                         response =>
                             <ApplicationHistoryCard
-                                arn={response.data.arn}
-                                status={response.data.status}
-                                remarks={response.data.remarks}
-                                onCardClick={openModal}
+                                key={response.requestId}
+                                arn={response.requestId}
+                                status={response.status}
+                                remarks={response.remarks}
+                                onButtonClick={e => openModal(e)}
                             />
                     )
                 )}
             </div>
 
-            <AppModal 
-                title="Application Details"
+            <AppModal
+                title={`ARN: ${arn}`}
                 cancelButton="Close"
                 onClose={closeModal}
                 show={modalOpen}
                 centered={true}
             >
-                <h2>Woohooooo!!! You are reading this text in a modal...</h2>
+                {/* <p>Woohooooo!!! You are reading this text in a modal...</p> */}
+                <div className="app-modal-body">
+                    <span>Dibendu S.</span>
+                </div>
             </AppModal>
         </div>
     )

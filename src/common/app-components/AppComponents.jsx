@@ -25,7 +25,7 @@ export const AppModal = ({
     children
 }) => (
     <Modal show={show} onHide={onClose} centered={centered}>
-        <Modal.Header closeButton>
+        <Modal.Header>
             <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -38,7 +38,7 @@ export const AppModal = ({
                 </Button>
             )}
             {cancelButton.length > 0 && (
-                <Button variant="secondary" onClick={onClose}>
+                <Button variant="secondary" size="lg" onClick={onClose}>
                     {cancelButton}
                 </Button>
             )}

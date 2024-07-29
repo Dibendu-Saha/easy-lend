@@ -4,13 +4,13 @@ import PropTypes from "prop-types";
 import "./UserForm.scss";
 
 const UserForm = ({
-    formTitle,
     formElements,
     confirmButton,
     action,
     handleTextChange,
     enableActionButton,
-    checkConsent
+    checkConsent,
+    loading
 }) => {
     const [occupation, setOccupation] = useState("none");
 
@@ -52,11 +52,11 @@ const UserForm = ({
             <div className="form-group button-group" style={{ marginTop: 50 }}>
                 <Button
                     variant="success"
-                    disabled={enableActionButton ? false : true}
+                    disabled={!enableActionButton || loading}
                     className="button"
-                    onClick={action}
+                    onClick={!loading ? action : () => { }}
                 >
-                    {confirmButton}
+                    {!loading ? confirmButton : <><div className="spinner-border mr-2" role="status" style={{ marginRight: 5 }}></div>Please Wait...</>}
                 </Button>
             </div>
         </div>

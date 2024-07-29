@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import { Form } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
 import Header from "../header/Header";
 import EligibilityForm from "../eligibility-form/EligibilityForm";
-import LoanApplyForm from "../loan-apply-form/LoanApplyForm";
 import "./Home.scss";
 import StepIndicator from "../../common/stepIndicator/StepIndicator";
 import UploadDocuments from "../uploadDocuments/UploadDocuments";
 import axios from 'axios';
+import Confirmation from "../confirmation/Confirmation";
 
 const Home = () => {
 
@@ -15,6 +14,7 @@ const Home = () => {
     const [loading, setLoading] = useState(false);
     const [enableActionButton, setEnableActionButton] = useState(false);
     const [responeData, setResponseData] = useState([]);
+    const [pageMode, setPageMode] = useState("");
 
     const INITIAL_STATE = {
         fullName: "",
@@ -28,6 +28,13 @@ const Home = () => {
         consent: true,
         occupation: "",
     };
+
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const mode = urlParams.get('mode');
+        if (mode !== null)
+            setPageMode(mode)
+    })
 
     const handleTextChange = (key, event) => {
         INITIAL_STATE[key] = event.target.value;
@@ -68,16 +75,34 @@ const Home = () => {
     }
 
     const showFormStep = () => {
-        if (currentStep === 0)
-            return <EligibilityForm
-                setProgress={setProgress}
-                handleTextChange={(key, event) => handleTextChange(key, event)}
-                action={checkEligibility}
-                enableActionButton={enableActionButton}
-                checkConsent={checkConsent}
-            />
-        if (currentStep === 1)
-            return <UploadDocuments initialValues={formData} responseData={responeData} />
+        if (pageMode === "") {
+            if (currentStep === 0)
+                return <EligibilityForm
+                    setProgress={setProgress}
+                    handleTextChange={(key, event) => handleTextChange(key, event)}
+                    action={checkEligibility}
+                    enableActionButton={enableActionButton}
+                    checkConsent={checkConsent}
+                    loading={loading}
+                />
+            else if (currentStep === 1)
+                return <UploadDocuments initialValues={formData} responseData={responeData} />
+            else if (currentStep > 1)
+                return <Confirmation arn={responeData.requestId} />
+        }
+        else {
+            if (currentStep === 0)
+                return <EligibilityForm
+                    setProgress={setProgress}
+                    handleTextChange={(key, event) => handleTextChange(key, event)}
+                    action={checkEligibility}
+                    enableActionButton={enableActionButton}
+                    checkConsent={checkConsent}
+                    loading={loading}
+                />
+            else if (currentStep > 0)
+                return <Confirmation arn={responeData.requestId} />
+        }
     }
 
     const checkConsent = (event) => {
@@ -93,9 +118,11 @@ const Home = () => {
     return (
         <div>
             <Header />
-            <div style={{ marginTop: 100, display: 'flex', justifyContent: "center" }}>
-                <StepIndicator currentStep={currentStep} setStep={setStep} />
-            </div>
+            {currentStep <= 1 && pageMode === "" &&
+                <div style={{ marginTop: 100, display: 'flex', justifyContent: "center" }}>
+                    <StepIndicator currentStep={currentStep} setStep={setStep} />
+                </div>
+            }
             {showFormStep()}
         </div >
     )

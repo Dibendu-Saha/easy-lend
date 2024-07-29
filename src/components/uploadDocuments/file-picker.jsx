@@ -97,14 +97,14 @@ const FilePicker = ({ accept, uploadURL }) => {
             ) : null}
 
             {/* progress bar */}
-            {canShowProgress ? (
+            {/* {canShowProgress ? (
                 <div className={styles.files_list_progress_wrapper}>
                     <progress value={progress} max={100} style={{ width: "100%" }} />
                 </div>
-            ) : null}
+            ) : null} */}
 
             {/* upload button */}
-            {files.length ? (
+            {/* {files.length ? (
                 <button
                     onClick={handleUpload}
                     className={classNames(
@@ -114,7 +114,7 @@ const FilePicker = ({ accept, uploadURL }) => {
                 >
                     {`Upload ${files.length} Files`}
                 </button>
-            ) : null}
+            ) : null} */}
         </div>
     );
 };

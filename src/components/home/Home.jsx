@@ -16,6 +16,7 @@ const Home = () => {
     const [enableActionButton, setEnableActionButton] = useState(false);
     const [responeData, setResponseData] = useState([]);
     const [pageMode, setPageMode] = useState("");
+    const [loanARN, setLoanARN] = useState("");
 
     const INITIAL_STATE = {
         fullName: "",
@@ -73,7 +74,7 @@ const Home = () => {
         }).catch((err) => {
             setLoading(false);
         })
-      
+
     }
 
     const showFormStep = () => {
@@ -88,9 +89,9 @@ const Home = () => {
                     loading={loading}
                 />
             else if (currentStep === 1)
-                return <UploadDocuments initialValues={formData} moveToNextStep={setProgress} responseData={responeData} />
+                return <UploadDocuments initialValues={formData} moveToNextStep={setProgress} responseData={responeData} setLoanARN={setLoanARN} />
             else if (currentStep > 1)
-                return <Confirmation arn={responeData.requestId} />
+                return <Confirmation arn={loanARN} />
         }
         else if (pageMode === "eligibility") {
             if (currentStep === 0)

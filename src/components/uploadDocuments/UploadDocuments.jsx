@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 import PersonalDetails from '../personalDetails/PersonalDetails';
 import axios from 'axios';
 
-const UploadDocuments = ({ initialValues, responseData, moveToNextStep = () => { } }) => {
+const UploadDocuments = ({ initialValues, responseData, moveToNextStep = () => { }, setLoanARN }) => {
     const [files, setFiles] = useState([]);
 
 
@@ -36,6 +36,7 @@ const UploadDocuments = ({ initialValues, responseData, moveToNextStep = () => {
                 'Content-Type': 'multipart/form-data'
             }
         }).then(res => {
+            setLoanARN(res.data.data.arn);
             moveToNextStep();
         }).catch(err => {
             console.log(err)

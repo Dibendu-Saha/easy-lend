@@ -21,8 +21,6 @@ const FilePicker = ({ accept, onFileChange = () => { } }) => {
         }));
 
         setFiles(filesArray);
-        // setProgress(0);
-        // setUploadStarted(false);
     }, []);
 
     // handle for removing files form the files list view

@@ -178,7 +178,6 @@ const LoanApplicationHistory = () => {
 
             <AppModal
                 arn={arn}
-                // title={`Request #: ${arn}`}
                 title={arn}
                 show={modalOpen}
                 centered={true}
@@ -204,7 +203,7 @@ const LoanApplicationHistory = () => {
                                     <div className="info-lbl">{x.label}</div>
                                     <div className="info-data">{x.value}</div>
                                 </div>
-                            ))}                            
+                            ))}
                         </div>
                     </div>
 

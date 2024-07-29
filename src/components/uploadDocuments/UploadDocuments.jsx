@@ -23,7 +23,6 @@ const UploadDocuments = ({ initialValues, responseData, moveToNextStep = () => {
         req.append('Occupation', initialValues.occupation);
         req.append('AnnualIncome', initialValues.annualIncome.toString());
         req.append('Consent', initialValues.consent);
-        // req.append('Documents', files);
         const filesArray = Array.isArray(files) ? files : Array.from(files);
         if (filesArray && filesArray.length > 0) {
             filesArray.forEach((file) => {

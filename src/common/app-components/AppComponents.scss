@@ -1,6 +1,15 @@
 .app-card-main {
     height: 180px;
     width: 350px;
-    // aspect-ratio: 1.4;
     text-align: left;
+}
+
+.btn-view-doc {
+    background: #2eca6a;
+    color: #fff;
+}
+
+.btn-close-modal {
+    border: 1px solid #cacaca;
+    color: #919191;
 }

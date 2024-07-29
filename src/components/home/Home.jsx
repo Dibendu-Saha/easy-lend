@@ -90,7 +90,7 @@ const Home = () => {
             else if (currentStep > 1)
                 return <Confirmation arn={responeData.requestId} />
         }
-        else {
+        else if (pageMode === "eligibility") {
             if (currentStep === 0)
                 return <EligibilityForm
                     setProgress={setProgress}
@@ -102,6 +102,9 @@ const Home = () => {
                 />
             else if (currentStep > 0)
                 return <Confirmation arn={responeData.requestId} />
+        }
+        else if (pageMode === "tickets") {
+
         }
     }
 

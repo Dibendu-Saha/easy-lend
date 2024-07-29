@@ -13,7 +13,13 @@ const ApplicationHistoryCard = ({
 }) => {
     const COLOR_MAP = {
         "Eligible": "green",
-        "Not Eligible": "red",
+        "SUBMITTED": "green",
+        "DISBURSED": "green",
+        "APPROVED": "green",
+        "IN-REVIEW": "orange",
+        "PARTIAL-APPROVED": "orange",
+        "REJECTED": "red",
+        "Not Eligible": "red"
     };
 
     const currentColor = COLOR_MAP[status];

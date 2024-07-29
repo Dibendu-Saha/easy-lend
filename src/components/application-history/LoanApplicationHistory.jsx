@@ -7,8 +7,15 @@ import "./LoanApplicationHistory.scss";
 
 const LoanApplicationHistory = () => {
     const USER_ID = "ABCDEFGDFG", //axjoni, ABCDEFGDFG;
+        CURR_REGEX = /\B(?=(\d{3})+(?!\d))/g,
         COLOR_MAP = {
             "Eligible": "green",
+            "SUBMITTED": "green",
+            "DISBURSED": "green",
+            "APPROVED": "green",
+            "IN-REVIEW": "orange",
+            "PARTIAL-APPROVED": "orange",
+            "REJECTED": "red",
             "Not Eligible": "red",
         };
 
@@ -103,7 +110,7 @@ const LoanApplicationHistory = () => {
             </div>
 
             <div className="eligibility-history-cards history-cards">
-                {(eligibilityHistoryData && eligibilityHistoryData.length) && (
+                {(eligibilityHistoryData && eligibilityHistoryData.length > 0) && (
                     eligibilityHistoryData.map(
                         response =>
                             <ApplicationHistoryCard
@@ -123,7 +130,7 @@ const LoanApplicationHistory = () => {
             </div>
 
             <div className="application-history-cards history-cards">
-                {(loanApplicationHistoryData && loanApplicationHistoryData.length) && (
+                {(loanApplicationHistoryData && loanApplicationHistoryData.length > 0) && (
                     loanApplicationHistoryData.map(
                         response =>
                             <ApplicationHistoryCard
@@ -141,6 +148,7 @@ const LoanApplicationHistory = () => {
 
 
             <AppModal
+                arn={arn}
                 title={`Request #: ${arn}`}
                 onClick={() => downloadFiles(base64Data)}
                 onClose={closeModal}
@@ -167,31 +175,31 @@ const LoanApplicationHistory = () => {
                             <div className="info-box">
                                 <div className="info-lbl">Occupation</div>
                                 <div className="info-data">{occupation}</div>
+                            </div>                            
+                        </div>
+
+                        <div className="data-grid-col-2">
+                            <div className="info-box">
+                                <div className="info-lbl">Annual Income</div>
+                                <div className="info-data">{annualIncome.toString().replace(CURR_REGEX, ",")}</div>
+                            </div>
+                            <div className="info-box">
+                                <div className="info-lbl">Loan Amount</div>
+                                <div className="info-data">{loanAmount.toString().replace(CURR_REGEX, ",")}</div>
+                            </div>
+                            <div className="info-box">
+                                <div className="info-lbl">Tenure (months)</div>
+                                <div className="info-data">{tenure}</div>
+                            </div>
+                            <div className="info-box">
+                                <div className="info-lbl">EMI</div>
+                                <div className="info-data">{(Number(emi).toFixed(2).toString().replace(CURR_REGEX, ","))}</div>
                             </div>
                             <div className="info-box">
                                 <div className="info-lbl">Status</div>
                                 <div style={{ background: statusColor }} className="info-data status-indicator">
                                     <span>{status.toLocaleUpperCase()}</span>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div className="data-grid-col-2">
-                            <div className="info-box">
-                                <div className="info-lbl">Annual Income</div>
-                                <div className="info-data">{annualIncome}</div>
-                            </div>
-                            <div className="info-box">
-                                <div className="info-lbl">Loan Amount</div>
-                                <div className="info-data">{loanAmount}</div>
-                            </div>
-                            <div className="info-box">
-                                <div className="info-lbl">Tenure</div>
-                                <div className="info-data">{tenure}</div>
-                            </div>
-                            <div className="info-box">
-                                <div className="info-lbl">EMI</div>
-                                <div className="info-data">{Number(emi).toFixed(2)}</div>
                             </div>
                         </div>
                     </div>

@@ -11,18 +11,22 @@
 
 .data-grid {
     display: flex;
-    gap: 220px;
+    gap: 120px;
+    padding: 0 20px;
 
     .info-box {
         display: flex;
         justify-content: space-between;
-        gap: 40px;
+        gap: 120px;
         margin-bottom: 6px;
+
+        .info-data {
+            margin-left: auto !important;
+        }
 
         .status-indicator {
             width: fit-content;
             padding: 0 12px;
-            margin-top: 4px;
             height: 24px;
             border-radius: 15px;
             display: flex;
@@ -47,4 +51,5 @@
 .info-box-remarks {
     display: flex;
     gap: 60px;
+    padding: 0 20px;
 }

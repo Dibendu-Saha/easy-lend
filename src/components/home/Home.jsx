@@ -6,6 +6,7 @@ import StepIndicator from "../../common/stepIndicator/StepIndicator";
 import UploadDocuments from "../uploadDocuments/UploadDocuments";
 import axios from 'axios';
 import Confirmation from "../confirmation/Confirmation";
+import LoanApplicationHistory from "../application-history/LoanApplicationHistory";
 
 const Home = () => {
 
@@ -36,7 +37,7 @@ const Home = () => {
         const mode = urlParams.get('mode');
         if (mode !== null)
             setPageMode(mode)
-    })
+    }, [])
 
     const handleTextChange = (key, event) => {
         INITIAL_STATE[key] = event.target.value;
@@ -106,8 +107,8 @@ const Home = () => {
             else if (currentStep > 0)
                 return <Confirmation arn={responeData.requestId} />
         }
-        else if (pageMode === "tickets") {
-
+        else if (pageMode === "history") {
+            return <LoanApplicationHistory />
         }
     }
 

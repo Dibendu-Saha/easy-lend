@@ -4,21 +4,11 @@ import EligibilityForm from "../eligibility-form/EligibilityForm";
 import "./Home.scss";
 import StepIndicator from "../../common/stepIndicator/StepIndicator";
 import UploadDocuments from "../uploadDocuments/UploadDocuments";
-import axios from 'axios';
 import Confirmation from "../confirmation/Confirmation";
 import LoanApplicationHistory from "../application-history/LoanApplicationHistory";
 import { axiosClient } from "../../config/axios-config";
 
 const Home = () => {
-
-    const [currentStep, setCurrentStep] = useState(0);
-    const [formData, setFormData] = useState({});
-
-    const [loading, setLoading] = useState(false);
-    const [enableActionButton, setEnableActionButton] = useState(false);
-    const [responeData, setResponseData] = useState([]);
-    const [pageMode, setPageMode] = useState("");
-    const [loanARN, setLoanARN] = useState("");
 
     const INITIAL_STATE = {
         fullName: "",
@@ -29,9 +19,20 @@ const Home = () => {
         annualIncome: "",
         amount: "",
         tenureMonths: "",
-        consent: true,
+        consent: false,
         occupation: "",
     };
+    const [currentStep, setCurrentStep] = useState(0);
+    const [formData, setFormData] = useState({...INITIAL_STATE});
+
+    const [loading, setLoading] = useState(false);
+    const [enableActionButton, setEnableActionButton] = useState(false);
+    const [responeData, setResponseData] = useState([]);
+    const [pageMode, setPageMode] = useState("");
+    const [loanARN, setLoanARN] = useState("");
+    
+
+   
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -41,14 +42,14 @@ const Home = () => {
     }, [])
 
     const handleTextChange = (key, event) => {
-        INITIAL_STATE[key] = event.target.value;
+       formData[key] = event.target.value;
     }
 
     const enableDisableActionButton = () => {
-        let _keys = Object.keys(INITIAL_STATE);
+        let _keys = Object.keys(formData);
         let _ifBlank = false;
         for (let index = 0; index < _keys.length; index++) {
-            if (INITIAL_STATE[_keys[index]] === "") {
+            if (formData[_keys[index]] === "") {
                 _ifBlank = true;
             }
         }
@@ -66,6 +67,7 @@ const Home = () => {
 
     const checkEligibility = () => {
         setLoading(true);
+        console.log(formData)
         //here we can find values
         axiosClient.post('/products/H0001/eligibility', {
             ...formData
@@ -114,8 +116,7 @@ const Home = () => {
     }
 
     const checkConsent = (event) => {
-        INITIAL_STATE.consent = event.target.checked;
-        setFormData(INITIAL_STATE);
+        setFormData({...formData,consent:event.target.checked})
         enableDisableActionButton();
     }
 

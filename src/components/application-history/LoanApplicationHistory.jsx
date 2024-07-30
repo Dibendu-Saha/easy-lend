@@ -5,6 +5,7 @@ import ApplicationHistoryCard from "../application-history-card/ApplicationHisto
 import mockData from "../../service/mocks/application-history-mock.json";
 import { AppModal, StatusIndicator } from "../../common/app-components/AppComponents";
 import { COLOR_MAP } from "../../common/utils";
+import { axiosClient } from "../../config/axios-config";
 import "./LoanApplicationHistory.scss";
 
 const LoanApplicationHistory = () => {
@@ -61,7 +62,7 @@ const LoanApplicationHistory = () => {
 
 
     const getHistoryData = async () => {
-        const response = await axios.get(`https://bankapi4.bsite.net/api/v1/Loan/${USER_ID}/history`);
+        const response = await axiosClient.get(`/${USER_ID}/history`);
         const eligibilityData = response.data.data.eligibilityChecks;
         const loanApplicationData = response.data.data.loanApplications;
 

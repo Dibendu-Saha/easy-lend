@@ -24,7 +24,7 @@ const ApplicationHistoryCard = ({
                     }
                 </h5>
                 <StatusIndicator
-                    status={status.toLocaleUpperCase()}
+                    status={status && status.toLocaleUpperCase()}
                     color={currentColor}
                     className="eligibility-status-indicator"
                 />

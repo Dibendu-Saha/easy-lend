@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { AppCard, StatusIndicator } from '../../common/app-components/AppComponents';
+import { COLOR_MAP } from '../../common/utils';
 import "./ApplicationHistoryCard.scss";
 
 const ApplicationHistoryCard = ({
@@ -11,17 +12,6 @@ const ApplicationHistoryCard = ({
     onCardClick,
     onButtonClick
 }) => {
-    const COLOR_MAP = {
-        "Eligible": "green",
-        "SUBMITTED": "green",
-        "DISBURSED": "green",
-        "APPROVED": "green",
-        "IN-REVIEW": "orange",
-        "PARTIAL-APPROVED": "orange",
-        "REJECTED": "red",
-        "Not Eligible": "red"
-    };
-
     const currentColor = COLOR_MAP[status];
 
     return (

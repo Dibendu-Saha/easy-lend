@@ -4,20 +4,11 @@ import { Spinner } from "react-bootstrap";
 import ApplicationHistoryCard from "../application-history-card/ApplicationHistoryCard";
 import mockData from "../../service/mocks/application-history-mock.json";
 import { AppModal, StatusIndicator } from "../../common/app-components/AppComponents";
+import { COLOR_MAP } from "../../common/utils";
 import "./LoanApplicationHistory.scss";
 
 const LoanApplicationHistory = () => {
-    const USER_ID = "ABCDEFGDFG", //axjoni, ABCDEFGDFG;
-        COLOR_MAP = {
-            "Eligible": "green",
-            "SUBMITTED": "green",
-            "DISBURSED": "green",
-            "APPROVED": "green",
-            "IN-REVIEW": "orange",
-            "PARTIAL-APPROVED": "orange",
-            "REJECTED": "red",
-            "Not Eligible": "red",
-        };
+    const USER_ID = "ABCDEFGDFG"; //axjoni, ABCDEFGDFG;
 
     const [eligibilityLoaded, setEligibilityLoaded] = useState(false),
         [applicationsloaded, setApplicationsloaded] = useState(false),

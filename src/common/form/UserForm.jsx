@@ -44,7 +44,7 @@ const UserForm = ({
                 style={{ marginLeft: 7, width: '49%', height: '11%' }}>
                 <option value="none">Select Occupation</option>
                 <option value="Salaried">Salaried</option>
-                <option value="Self-employed">Self-employed</option>
+                <option value="Self employed">Self-employed</option>
             </select>
             <div className="form-group col-10" style={{ width: '100%', textAlign: 'justify', display: 'flex' }}>
                 <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" onClick={checkConsent}

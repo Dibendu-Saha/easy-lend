@@ -7,7 +7,7 @@ import { AppModal, StatusIndicator } from "../../common/app-components/AppCompon
 import "./LoanApplicationHistory.scss";
 
 const LoanApplicationHistory = () => {
-    const USER_ID = "axjoni", //axjoni, ABCDEFGDFG;
+    const USER_ID = "ABCDEFGDFG", //axjoni, ABCDEFGDFG;
         COLOR_MAP = {
             "Eligible": "green",
             "SUBMITTED": "green",
@@ -25,6 +25,7 @@ const LoanApplicationHistory = () => {
         [status, setStatus] = useState(""),
         [statusColor, setStatusColor] = useState(""),
         [name, setName] = useState(""),
+        [email, setEmail] = useState(""),
         [pan, setPan] = useState(""),
         [aadhar, setAadhar] = useState(""),
         [occupation, setOccupation] = useState(""),
@@ -41,16 +42,17 @@ const LoanApplicationHistory = () => {
 
     const lblDataFormFirstColMap = [
         { label: "Name", value: name },
+        { label: "Email", value: email },
         { label: "PAN", value: pan },
         { label: "Aadhar", value: aadhar },
         { label: "Occupation", value: occupation }
     ];
 
     const lblDataFormSecondColMap = [
-        { label: "Annual Income", value: annualIncome.toLocaleString('en-IN') },
-        { label: "Loan Amount", value: loanAmount.toLocaleString('en-IN') },
+        { label: "Annual Income", value: annualIncome.toLocaleString("en-IN") },
+        { label: "Loan Amount", value: loanAmount.toLocaleString("en-IN") },
         { label: "Tenure (months)", value: tenure },
-        { label: "EMI", value: Number(emi).toLocaleString('en-IN') },
+        { label: "EMI", value: Number(emi).toLocaleString("en-IN") },
         {
             label: "Status",
             value: <StatusIndicator
@@ -98,6 +100,7 @@ const LoanApplicationHistory = () => {
             setStatusColor(COLOR_MAP[userData.status]);
             setRemarks(userData.remarks);
             setName(userData.fullName);
+            setEmail(userData.email);
             setPan(userData.pan);
             setAadhar(userData.aadhaar);
             setOccupation(userData.occupation);

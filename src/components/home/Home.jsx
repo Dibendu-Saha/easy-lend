@@ -98,6 +98,7 @@ const Home = () => {
         else if (pageMode === "eligibility") {
             if (currentStep === 0)
                 return <EligibilityForm
+                    source="eligibility"
                     setProgress={setProgress}
                     handleTextChange={(key, event) => handleTextChange(key, event)}
                     action={checkEligibility}

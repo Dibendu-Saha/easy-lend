@@ -1,12 +1,10 @@
 import { Steps } from 'rsuite';
 
-const StepIndicator = ({ currentStep }) => (
+const StepIndicator = ({ currentStep, setStep }) => (
     <div style={{ width: '70%', alignItems: "center", display: 'inline-block', marginBottom: 40 }}>
         <Steps current={currentStep}>
-            <Steps.Item title="Check Eligibility" />
-            <Steps.Item title="Personal details" />
-            <Steps.Item title="Documents" />
-            <Steps.Item title="Review" />
+            <Steps.Item title="Personal Details" />
+            <Steps.Item title="Upload Documents" />
         </Steps>
     </div>
 );

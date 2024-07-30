@@ -5,15 +5,8 @@ $font-color: #4a4a4a;
 @import "rsuite/dist/rsuite.css";
 
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-* {
   margin: 0;
-  padding: 0;
+  padding: 2rem;
   box-sizing: border-box;
 }
 
@@ -26,16 +19,13 @@ body {
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
   color: $font-color;
-  /* max-width: 1600px; */
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  padding-top: 80px;
 }
 
 .border {
   border: 1px solid;
-  ;
 }
 
 .border-red {
@@ -45,10 +35,6 @@ body {
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
-// body {
-//   font-family: "Poppins", sans-serif;
-//   color: #555555;
-// }
 
 h1,
 h2,
@@ -353,18 +339,12 @@ a:hover {
   }
 }
 
-.button:focus {
-  background-color: #000000;
-  color: #ffffff;
-}
-
 // /*--------------------------------------------------------------
 // # Navbar
 // --------------------------------------------------------------*/
 .navbar-default {
   transition: all 0.5s ease-in-out;
   background-color: #ffffff;
-  // padding-top: 20px;
   padding-bottom: 20px;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;

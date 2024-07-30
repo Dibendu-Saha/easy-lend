@@ -1,58 +1,56 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Spinner } from "react-bootstrap";
 import ApplicationHistoryCard from "../application-history-card/ApplicationHistoryCard";
 import mockData from "../../service/mocks/application-history-mock.json";
 import { AppModal, StatusIndicator } from "../../common/app-components/AppComponents";
+import { COLOR_MAP } from "../../common/utils";
+import { axiosClient } from "../../config/axios-config";
 import "./LoanApplicationHistory.scss";
 
 const LoanApplicationHistory = () => {
-    const USER_ID = "ABCDEFGDFG", //axjoni, ABCDEFGDFG;
-        COLOR_MAP = {
-            "Eligible": "green",
-            "SUBMITTED": "green",
-            "DISBURSED": "green",
-            "APPROVED": "green",
-            "IN-REVIEW": "orange",
-            "PARTIAL-APPROVED": "orange",
-            "REJECTED": "red",
-            "Not Eligible": "red",
-        };
+    const USER_ID = "ABCDEFGDFG"; //axjoni, ABCDEFGDFG;
 
-    const [arn, setArn] = useState(""),
-        [status, setStatus] = useState(""),
-        [statusColor, setStatusColor] = useState(""),
-        [name, setName] = useState(""),
-        [pan, setPan] = useState(""),
-        [aadhar, setAadhar] = useState(""),
-        [occupation, setOccupation] = useState(""),
-        [annualIncome, setAnnualIncome] = useState(""),
-        [loanAmount, setLoanAmount] = useState(""),
-        [tenure, setTenure] = useState(""),
-        [emi, setEmi] = useState(""),
-        [remarks, setRemarks] = useState(""),
-        [base64Data, setBase64Data] = useState(),
-        [loanApplicationCardFlag, setLoanApplicationCardFlag] = useState(false),
+    const [formData, setFormData] = useState({
+        arn: "",
+        status: "",
+        statusColor: "",
+        name: "",
+        email: "",
+        pan: "",
+        aadhar: "",
+        occupation: "",
+        annualIncome: "",
+        loanAmount: "",
+        tenure: "",
+        emi: "",
+        remarks: "",
+        base64Data: null,
+    });
+
+    const [loanApplicationCardFlag, setLoanApplicationCardFlag] = useState(false),
         [modalOpen, setModalOpen] = useState(false),
         [eligibilityHistoryData, setEligibilityHistoryData] = useState(),
         [loanApplicationHistoryData, setLoanApplicationHistoryDataHistoryData] = useState();
 
     const lblDataFormFirstColMap = [
-        { label: "Name", value: name },
-        { label: "PAN", value: pan },
-        { label: "Aadhar", value: aadhar },
-        { label: "Occupation", value: occupation }
+        { label: "Name", value: formData.name },
+        { label: "Email", value: formData.email },
+        { label: "PAN", value: formData.pan },
+        { label: "Aadhar", value: formData.aadhar },
+        { label: "Occupation", value: formData.occupation }
     ];
 
     const lblDataFormSecondColMap = [
-        { label: "Annual Income", value: annualIncome.toLocaleString('en-IN') },
-        { label: "Loan Amount", value: loanAmount.toLocaleString('en-IN') },
-        { label: "Tenure (months)", value: tenure },
-        { label: "EMI", value: Number(emi).toLocaleString('en-IN') },
+        { label: "Annual Income", value: formData.annualIncome.toLocaleString("en-IN") },
+        { label: "Loan Amount", value: formData.loanAmount.toLocaleString("en-IN") },
+        { label: "Tenure (months)", value: formData.tenure },
+        { label: "EMI", value: Number(formData.emi).toLocaleString("en-IN") },
         {
             label: "Status",
             value: <StatusIndicator
-                status={status.toLocaleUpperCase()}
-                color={statusColor}
+                status={formData.status.toLocaleUpperCase()}
+                color={formData.statusColor}
             />
         }
     ];
@@ -64,7 +62,7 @@ const LoanApplicationHistory = () => {
 
 
     const getHistoryData = async () => {
-        const response = await axios.get(`https://bankapi4.bsite.net/api/v1/Loan/${USER_ID}/history`);
+        const response = await axiosClient.get(`/${USER_ID}/history`);
         const eligibilityData = response.data.data.eligibilityChecks;
         const loanApplicationData = response.data.data.loanApplications;
 
@@ -86,19 +84,23 @@ const LoanApplicationHistory = () => {
                 setLoanApplicationCardFlag(true);
             }
 
-            setArn(id);
-            setStatus(userData.status);
-            setStatusColor(COLOR_MAP[userData.status]);
-            setRemarks(userData.remarks);
-            setName(userData.fullName);
-            setPan(userData.pan);
-            setAadhar(userData.aadhaar);
-            setOccupation(userData.occupation);
-            setAnnualIncome(userData.annualIncome);
-            setLoanAmount(userData.amount);
-            setTenure(userData.tenureMonths);
-            setEmi(userData.emi);
-            setBase64Data(userData.documentsBase64);
+            setFormData({
+                ...formData,
+                arn: id,
+                status: userData.status,
+                statusColor: COLOR_MAP[userData.status],
+                remarks: userData.remarks,
+                name: userData.fullName,
+                email: userData.email,
+                pan: userData.pan,
+                aadhar: userData.aadhaar,
+                occupation: userData.occupation,
+                annualIncome: userData.annualIncome,
+                loanAmount: userData.amount,
+                tenure: userData.tenureMonths,
+                emi: userData.emi,
+                base64Data: userData.documentsBase64
+            });
         }
 
         setModalOpen(true);
@@ -134,13 +136,14 @@ const LoanApplicationHistory = () => {
 
     return (
         <div className="history-page">
-            <div className="eligibility-history-page-title">
-                <h3>Loan Eligibility History</h3>
+            <div className="history-title eligibility-history-page-title">
+                <h4>Loan Eligibility History</h4>
             </div>
 
             <div className="eligibility-history-cards history-cards">
-                {(eligibilityHistoryData && eligibilityHistoryData.length > 0) && (
-                    eligibilityHistoryData.map(
+                {!eligibilityHistoryData
+                    ? <Spinner animation="border" />
+                    : eligibilityHistoryData.map(
                         response =>
                             <ApplicationHistoryCard
                                 key={response.requestId}
@@ -149,18 +152,17 @@ const LoanApplicationHistory = () => {
                                 remarks={response.remarks}
                                 onButtonClick={e => openModal(e)}
                             />
-                    )
-                )}
+                    )}
             </div>
 
-
-            <div className="application-history-page-title">
-                <h3>Loan Application History</h3>
+            <div className="history-title application-history-page-title">
+                <h4>Loan Application History</h4>
             </div>
 
             <div className="application-history-cards history-cards">
-                {(loanApplicationHistoryData && loanApplicationHistoryData.length > 0) && (
-                    loanApplicationHistoryData.map(
+                {!loanApplicationHistoryData
+                    ? <Spinner animation="border" />
+                    : loanApplicationHistoryData.map(
                         response =>
                             <ApplicationHistoryCard
                                 key={response.requestId}
@@ -169,20 +171,17 @@ const LoanApplicationHistory = () => {
                                 remarks={response.remarks}
                                 onButtonClick={e => openModal(e)}
                             />
-                    )
-                )}
+                    )}
             </div>
 
 
-
-
             <AppModal
-                arn={arn}
-                title={arn}
+                arn={formData.arn}
+                title={formData.arn}
                 show={modalOpen}
                 centered={true}
                 confirmButton={loanApplicationCardFlag ? "View Documents" : ""}
-                onClick={() => downloadFiles(base64Data)}
+                onClick={() => downloadFiles(formData.base64Data)}
                 cancelButton="Close"
                 onClose={closeModal}
             >
@@ -209,7 +208,7 @@ const LoanApplicationHistory = () => {
 
                     <div className="info-box-remarks">
                         <div className="info-lbl">Remarks</div>
-                        <div className="info-data">{remarks}</div>
+                        <div className="info-data">{formData.remarks}</div>
                     </div>
                 </div>
             </AppModal>

@@ -78,8 +78,7 @@ const UploadDocuments = ({ initialValues, responseData, moveToNextStep = () => {
                 </div>
             </div>
             <div className="form-group button-group" style={{ marginTop: 50 }}>
-                <Button variant="success" className="button" onClick={() => onSubmit()} disabled={!files.length}
-                >
+                <Button variant="success" className="button" onClick={() => onSubmit()} disabled={!files.length}>
                     Submit
                 </Button>
             </div>

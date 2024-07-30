@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Spinner } from "react-bootstrap";
 import ApplicationHistoryCard from "../application-history-card/ApplicationHistoryCard";
@@ -148,43 +148,39 @@ const LoanApplicationHistory = () => {
                 <h3>Loan Eligibility History</h3>
             </div>
 
-            <Suspense fallback={<Spinner animation="border" />}>
-                <div className="eligibility-history-cards history-cards">
-                    {(!eligibilityHistoryData)
-                        ? <Spinner animation="border" />
-                        : eligibilityHistoryData.map(
-                            response =>
-                                <ApplicationHistoryCard
-                                    key={response.requestId}
-                                    reqId={response.requestId}
-                                    status={response.status}
-                                    remarks={response.remarks}
-                                    onButtonClick={e => openModal(e)}
-                                />
-                        )}
-                </div>
-            </Suspense>
+            <div className="eligibility-history-cards history-cards">
+                {!eligibilityHistoryData
+                    ? <Spinner animation="border" />
+                    : eligibilityHistoryData.map(
+                        response =>
+                            <ApplicationHistoryCard
+                                key={response.requestId}
+                                reqId={response.requestId}
+                                status={response.status}
+                                remarks={response.remarks}
+                                onButtonClick={e => openModal(e)}
+                            />
+                    )}
+            </div>
 
             <div className="history-title application-history-page-title">
                 <h3>Loan Application History</h3>
             </div>
 
-            <Suspense fallback={<Spinner animation="border" />}>
-                <div className="application-history-cards history-cards">
-                    {(!loanApplicationHistoryData)
-                        ? <Spinner animation="border" />
-                        : loanApplicationHistoryData.map(
-                            response =>
-                                <ApplicationHistoryCard
-                                    key={response.requestId}
-                                    arn={response.arn}
-                                    status={response.status}
-                                    remarks={response.remarks}
-                                    onButtonClick={e => openModal(e)}
-                                />
-                        )}
-                </div>
-            </Suspense>
+            <div className="application-history-cards history-cards">
+                {!loanApplicationHistoryData
+                    ? <Spinner animation="border" />
+                    : loanApplicationHistoryData.map(
+                        response =>
+                            <ApplicationHistoryCard
+                                key={response.requestId}
+                                arn={response.arn}
+                                status={response.status}
+                                remarks={response.remarks}
+                                onButtonClick={e => openModal(e)}
+                            />
+                    )}
+            </div>
 
 
             <AppModal

@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import FilePicker from "./file-picker";
 import './uploadDocuments.scss';
-import { Button } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import PersonalDetails from '../personalDetails/PersonalDetails';
 import axios from 'axios';
 import { axiosClient } from '../../config/axios-config';
 
 const UploadDocuments = ({ initialValues, responseData, moveToNextStep = () => { }, setLoanARN }) => {
     const [files, setFiles] = useState([]);
-
+    const [showErrorModal, setErrorModal] = useState(false);
 
     const onSubmit = () => {
         const req = new FormData();
@@ -39,10 +39,24 @@ const UploadDocuments = ({ initialValues, responseData, moveToNextStep = () => {
             setLoanARN(res.data.data.arn);
             moveToNextStep();
         }).catch(err => {
-            console.log(err)
+            console.log(err);
+            setErrorModal(true);
         })
 
     }
+
+    const renderErrorModal = () => (
+        <Modal show={showErrorModal} onHide={(handleClose)}>
+            <Modal.Body>We're unable to process this request at the moment.</Modal.Body>
+            <Modal.Footer>
+                <Button variant="outline-secondary" size="lg" onClick={handleClose}>
+                    Dismiss
+                </Button>
+            </Modal.Footer>
+        </Modal>
+    )
+
+    const handleClose = () => setErrorModal(false);
 
     return (
         <>
@@ -64,12 +78,13 @@ const UploadDocuments = ({ initialValues, responseData, moveToNextStep = () => {
                 </div>
             </div>
             <div className="form-group button-group" style={{ marginTop: 50 }}>
-                <Button variant="success" className="button" onClick={() => onSubmit()}
-                    // disabled={!files.length}
+                <Button variant="success" className="button" onClick={() => onSubmit()} disabled={!files.length}
                 >
                     Submit
                 </Button>
             </div>
+
+            {renderErrorModal()}
         </>
     )
 }

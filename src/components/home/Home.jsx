@@ -127,7 +127,7 @@ const Home = () => {
         <div>
             <Header />
             {currentStep <= 1 && pageMode === "" &&
-                <div style={{ marginTop: 100, display: 'flex', justifyContent: "center" }}>
+                <div style={{ display: 'flex', justifyContent: "center" }}>
                     <StepIndicator currentStep={currentStep} setStep={setStep} />
                 </div>
             }

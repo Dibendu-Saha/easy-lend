@@ -52,7 +52,7 @@ const UserForm = ({
                 <label className="form-check-label" id="lblConsent" htmlFor="defaultCheck1" style={{ marginLeft: 10 }}>By providing your information, you consent to us using it to contact you for further communication and updates regarding our services. This includes checking your CIBIL score as part of our process to offer tailored financial advice and solutions. We value your privacy and will use your details solely for these purposes. If you have any questions or concerns, please let us know.
                 </label>
             </div>
-            <div className="form-group button-group" style={{ marginTop: 50 }}>
+            <div className="form-group button-group" style={{ marginTop: 32, marginBottom:50 }}>
                 <Button
                     variant="success"
                     disabled={!enableActionButton || loading}

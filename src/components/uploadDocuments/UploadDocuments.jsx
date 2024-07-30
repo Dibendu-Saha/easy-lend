@@ -4,6 +4,7 @@ import './uploadDocuments.scss';
 import { Button } from 'react-bootstrap';
 import PersonalDetails from '../personalDetails/PersonalDetails';
 import axios from 'axios';
+import { axiosClient } from '../../config/axios-config';
 
 const UploadDocuments = ({ initialValues, responseData, moveToNextStep = () => { }, setLoanARN }) => {
     const [files, setFiles] = useState([]);
@@ -30,7 +31,7 @@ const UploadDocuments = ({ initialValues, responseData, moveToNextStep = () => {
             });
         }
 
-        axios.post('https://bankapi4.bsite.net/api/v1/Loan/products/H0001/apply', req, {
+        axiosClient.post('/products/H0001/apply', req, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -63,7 +64,9 @@ const UploadDocuments = ({ initialValues, responseData, moveToNextStep = () => {
                 </div>
             </div>
             <div className="form-group button-group" style={{ marginTop: 50 }}>
-                <Button variant="success" className="button" onClick={() => onSubmit()} disabled={!files.length}>
+                <Button variant="success" className="button" onClick={() => onSubmit()}
+                    // disabled={!files.length}
+                >
                     Submit
                 </Button>
             </div>

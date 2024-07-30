@@ -7,6 +7,7 @@ import UploadDocuments from "../uploadDocuments/UploadDocuments";
 import axios from 'axios';
 import Confirmation from "../confirmation/Confirmation";
 import LoanApplicationHistory from "../application-history/LoanApplicationHistory";
+import { axiosClient } from "../../config/axios-config";
 
 const Home = () => {
 
@@ -66,7 +67,7 @@ const Home = () => {
     const checkEligibility = () => {
         setLoading(true);
         //here we can find values
-        axios.post('https://bankapi4.bsite.net/api/v1/Loan/products/H0001/eligibility', {
+        axiosClient.post('/products/H0001/eligibility', {
             ...formData
         }).then(res => {
             setResponseData(res.data.data);

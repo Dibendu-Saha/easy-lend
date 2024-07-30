@@ -10,9 +10,7 @@ import "./LoanApplicationHistory.scss";
 const LoanApplicationHistory = () => {
     const USER_ID = "ABCDEFGDFG"; //axjoni, ABCDEFGDFG;
 
-    const [eligibilityLoaded, setEligibilityLoaded] = useState(false),
-        [applicationsloaded, setApplicationsloaded] = useState(false),
-        [arn, setArn] = useState(""),
+    const [arn, setArn] = useState(""),
         [status, setStatus] = useState(""),
         [statusColor, setStatusColor] = useState(""),
         [name, setName] = useState(""),
@@ -64,15 +62,11 @@ const LoanApplicationHistory = () => {
         const eligibilityData = response.data.data.eligibilityChecks;
         const loanApplicationData = response.data.data.loanApplications;
 
-        if (eligibilityData) {
+        if (eligibilityData)
             setEligibilityHistoryData(eligibilityData);
-            setEligibilityLoaded(true);
-        }
 
-        if (loanApplicationData) {
+        if (loanApplicationData)
             setLoanApplicationHistoryDataHistoryData(loanApplicationData);
-            setApplicationsloaded(true);
-        }
     }
 
     const openModal = (e) => {

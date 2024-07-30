@@ -137,7 +137,7 @@ const LoanApplicationHistory = () => {
     return (
         <div className="history-page">
             <div className="history-title eligibility-history-page-title">
-                <h3>Loan Eligibility History</h3>
+                <h4>Loan Eligibility History</h4>
             </div>
 
             <div className="eligibility-history-cards history-cards">
@@ -156,7 +156,7 @@ const LoanApplicationHistory = () => {
             </div>
 
             <div className="history-title application-history-page-title">
-                <h3>Loan Application History</h3>
+                <h4>Loan Application History</h4>
             </div>
 
             <div className="application-history-cards history-cards">

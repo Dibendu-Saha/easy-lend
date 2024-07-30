@@ -49,7 +49,7 @@ const LoanApplicationHistory = () => {
         {
             label: "Status",
             value: <StatusIndicator
-                status={formData.status.toLocaleUpperCase()}
+                status={formData.status && formData.status.toLocaleUpperCase()}
                 color={formData.statusColor}
             />
         }
